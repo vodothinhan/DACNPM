@@ -46,7 +46,7 @@ class Bar {
         ctx.strokeStyle = 'blue';
         ctx.moveTo(this.x, this.y);
         //ctx.strokeRect(this.x, this.y, this.x, this.height);
-        ctx.strokeRect(0, 300, 10, this.height / 2);
+        ctx.strokeRect(0, 250, 10, this.height / 2);
         ctx.stroke();
 
         // ctx.beginPath();
@@ -62,6 +62,7 @@ class Bar {
 //create Bar
 const fftSize = 1024
 const microphone = new  Microphone(fftSize);
+
 let bars = [];
 
 function createBars(){
@@ -75,7 +76,7 @@ function createBars(){
 let angle = 0;
 
 function animate(){
-    if(microphone.initialized){
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
     //generate audio sample 
     const sample = microphone.getSample();
@@ -91,7 +92,7 @@ function animate(){
         bar.draw(context, volume);
     });
     context.restore();
-    }
+    
     requestAnimationFrame(animate);
 }
 

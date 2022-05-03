@@ -12,7 +12,7 @@ class Microphone {
             this.dataArray = new Uint8Array(bufferLength);
             //feed microphone data to analyzer
             this.microphone.connect(this.analyser);
-            BaseAudioContext.destination
+            BaseAudioContext.destination;
             this.initialized = true;
 
         }.bind(this)).catch(function(err){

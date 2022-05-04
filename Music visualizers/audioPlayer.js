@@ -101,7 +101,7 @@ playButton.addEventListener('click', () => {
     const isPlaying = audioContainer.classList.contains('play');
     const audio = document.getElementById('audio');
 
-    if (songState === 'ended' && randomState === 'on') {
+    if (songState === 'ended' && (randomState === 'on' || randomState === 'off') && repeatState === 'off') {
         createListRandom();
         songState = 'playing';
         audioContainer.classList.add('play');
@@ -109,10 +109,11 @@ playButton.addEventListener('click', () => {
         playButton.childNodes[1].classList.add('fa-pause');
         randomSong();
     }
-
-    if (songState === 'ended') {
-        repeatSong(audio);
-        songState = 'playing';
+    else {
+        if (songState === 'ended') {
+            repeatSong(audio);
+            songState = 'playing';
+        }
     }
 
     if (isPlaying) {
@@ -127,15 +128,25 @@ playButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-    songIndex++;
-    checkSong();
-    main(url, 'next');
+    if (randomState === 'on') {
+        randomSong();
+    }
+    else {
+        songIndex++;
+        checkSong();
+        main(url, 'next');
+    }
 });
 
 prevButton.addEventListener('click', () => {
-    songIndex--;
-    checkSong();
-    main(url, 'next');
+    if (randomState === 'on') {
+        randomSong();
+    }
+    else {
+        songIndex--;
+        checkSong();
+        main(url, 'next');
+    }
 });
 
 //adio event
@@ -145,11 +156,16 @@ progressContainer.addEventListener('click', setProgress);
 
 audio.addEventListener('ended', () => {                         //next song 
     if (repeatState === 'off' && randomState === 'off') {
-        songState = 'ended';
-        audioContainer.classList.remove('play');
-        playButton.childNodes[1].classList.remove('fa-pause');
-        playButton.childNodes[1].classList.add('fa-rotate-right');
-        audio.pause();
+        if (songIndex === songs.length - 1) {
+            songState = 'ended';
+            audioContainer.classList.remove('play');
+            playButton.childNodes[1].classList.remove('fa-pause');
+            playButton.childNodes[1].classList.add('fa-rotate-right');
+            audio.pause();
+        }
+        else {
+            randomSong();
+        }
     }
     else {
         if (repeatState === 'off' && randomState === 'on') {
@@ -220,18 +236,26 @@ function randomSong() {
         }
     }
 
-    var random = Math.floor(Math.random() * (listRandom.length));
-    console.log('song length: ' + songs.length);
-    console.log('listRandom lenght ' + listRandom.length);
-    console.log('random out if ' + random + ' value in list: ' + listRandom[random]);
+    if (randomState === "on") {
+        var random = Math.floor(Math.random() * (listRandom.length));
+        console.log('song length: ' + songs.length);
+        console.log('listRandom lenght ' + listRandom.length);
+        console.log('random out if ' + random + ' value in list: ' + listRandom[random]);
 
-    songIndex = listRandom[random];
-    listRandom.splice(random, 1);
-    console.log(listRandom);
+        songIndex = listRandom[random];
+        listRandom.splice(random, 1);
+        console.log(listRandom);
 
-    console.log('song index: ' + songIndex);
-    checkSong();
-    main(url, 'next');
+        console.log('song index: ' + songIndex);
+        checkSong();
+        main(url, 'next');
+    }
+    else {
+        songIndex++;
+        checkSong();
+        main(url, 'next');
+    }
+
 }
 
 //volume event
@@ -290,8 +314,7 @@ repeatButton.addEventListener('click', (e) => {
         repeatState = 'all';
         e.target.style.filter = "brightness(200%)";
         e.target.style.color = "red";
-        // addIcon.style.filter = "brightness(0%)"
-        // addIcon.style.color = "white";
+        addIcon.style.filter = "brightness(0%)"
     }
     else {
         if (repeatState === 'all') {

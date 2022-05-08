@@ -1,27 +1,31 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id" , nullable = false)
     private int id ;
-    @Column(name = "email")
+    @Column(name = "email",nullable = false)
     private String email ;
-    @Column(name = "pass")
+    @Column(name = "pass" ,nullable = false)
     private String pass ;
-    @Column(name = "role")
+    @Column(name = "role" ,nullable = false)
     private String role ;
-    @Column(name = "status")
+    @Column(name = "status",nullable = false)
     private boolean status ;
-    @Column(name = "dateofbirth")
+    @Column(name = "dateofbirth",nullable = false)
     private  String  date ;
-    @Column(name = "gender")
+    @Column(name = "gender",nullable = false)
     private String gender ;
-
+    @Column(name = "codereset",nullable = true)
+    private  String code ;
+    @Column(name="time",nullable = true)
+    private Date time ;
     public Customer(){}
 
     public Customer( String email, String pass, String role, boolean status, String date, String gender) {
@@ -87,5 +91,21 @@ public class Customer {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

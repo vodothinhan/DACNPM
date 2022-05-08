@@ -37,6 +37,13 @@
                     </div>
                 </c:if>
             </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Mật khẩu*</label>
+                <input type="password" name="pass" class="form-control" id="password" required placeholder="Mật khẩu">
+                    <div class="invalid-feedback">
+                       Trường này không được trống !
+                    </div>
+            </div>
 
             <div class="col-12">
                 <button class="btn btn-primary" type="submit">Tiếp theo</button>

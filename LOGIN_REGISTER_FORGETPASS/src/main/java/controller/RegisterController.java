@@ -28,6 +28,7 @@ public class RegisterController {
         register.save(
                 new Customer(email ,pass,"USER",true,date,gender)
         );
+        model.addAttribute("register" , true);
         return "login";
     }
 }

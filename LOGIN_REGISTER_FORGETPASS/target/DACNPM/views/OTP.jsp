@@ -12,17 +12,48 @@
     <link href="<c:url value="/resource/style/login.css" />" rel="stylesheet">
     <title>OTP</title>
 </head>
+<style>
+    .spinner-reset-otp{
+        display: none !important;
+    }
+    .spinner-reset-otp.active{
+        display: inline-block !important;
+    }
+    .btn-reset-otp.active{
+        display: none !important ;
+    }
+    .toast-success{
+        display: none !important;
+    }
+    .toast-success.active{
+        display: block !important;
+    }
+    .toast-danger{
+        display: none !important;
+    }
+
+    .toast-danger.active{
+        display: block !important;
+    }
+
+</style>
 <body>
 
 <div class="container-form">
-    <form class="needs-validation" action="" novalidate>
+    <form class="needs-validation" action="/forgetpass/sendOTP" method="post" novalidate>
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Nhập mã OTP</h1>
-           <c:if test="${sucess==true}">
-               <div class="alert alert-success " role="alert">
-                   Mã OTP gửi lại thành công
-               </div>
-           </c:if>
+            <div class="alert alert-success toast-success" role="alert">
+                Mã OTP gửi lại thành công
+            </div>
+            <div class="alert alert-danger toast-danger" role="alert">
+                Vui lòng đợi hết 3 phút để gửi lại mã
+            </div>
+            <c:if test="${timeFailure==true}">
+                <div class="alert alert-danger" role="alert">
+                   Mã OTP đã quá hạn
+                </div>
+            </c:if>
             <p class="lead text-center">
                 Mã OTP đã được gửi về email <br/>
                ${email}
@@ -31,13 +62,17 @@
                 <label for="Email" class="form-label">Mã OTP*</label>
                 <input type="text" class="form-control input1" id="Email" required placeholder="Mã OTP" name="otp">
                 <input name ="email" value="${email}" type="hidden"/>
+                <input name ="pass" value="${pass}" type="hidden"/>
                 <div class="invalid-feedback">
                     Trường này không được trống !
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12  spiner-reset">
                 <button class="btn btn-primary" type="submit">Hoàn tất</button>
-                <a href="<c:url value="/forgetpass/resetOTP?email=${email}"/>" class="link-dark d-inline-block ms-4">Gửi lại mã</a>
+                <div class="spinner-border spinner-border-sm ms-4 spinner-reset-otp" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <a href="<c:url value="/user/resetOTP?email=${email}"/>" class="link-dark d-inline-block ms-4 btn-reset-otp">Gửi lại mã</a>
             </div>
         </div>
 
@@ -57,5 +92,6 @@
             }, true)
         })
 </script>
+<script src="<c:url value="/resource/js/OTP.js"/> "></script>
 </body>
 </html>

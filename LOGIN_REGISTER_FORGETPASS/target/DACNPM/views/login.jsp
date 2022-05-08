@@ -9,7 +9,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 <!DOCTYPE html>
@@ -28,6 +27,16 @@
     <form class="needs-validation" action="/login"  method="post" novalidate>
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Đăng nhập</h1>
+           <c:if test="${resetpass==true}">
+               <div class="alert alert-success" role="alert">
+                  Bạn đã thay đổi mật khẩu thành công
+               </div>
+           </c:if>
+            <c:if test="${register==true}">
+                <div class="alert alert-success" role="alert">
+                   Bạn đã đăng kí tài khoản thành công
+                </div>
+            </c:if>
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
                 <input type="email" name="email" class="form-control ${not empty email?"is-invalid":""} input1" id="Email" required placeholder="Email" value="${value==null?"":value}">

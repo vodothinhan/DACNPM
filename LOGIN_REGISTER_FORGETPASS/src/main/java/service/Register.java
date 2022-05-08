@@ -4,6 +4,9 @@ import entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.DAOCustomer;
+
+import java.util.Date;
+
 @Service
 public class Register {
     @Autowired
@@ -14,5 +17,6 @@ public class Register {
     public void save(Customer customer){
         daoCustomer.save(customer);
     }
+
 
 }

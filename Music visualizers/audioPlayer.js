@@ -39,7 +39,7 @@ function createListRandom() {
 }
 
 //list song
-const songs = [new Song("Evangelion", "Evan2"), new Song("Save me", "Save me"), new Song("Moonlight shadow", "Moonlight shadow")];
+const songs = [new Song("Evangelion", "https://firebasestorage.googleapis.com/v0/b/projectandroidgroup6.appspot.com/o/Who%20let%20The%20Frog%20Out_.mp3?alt=media&token=4fd87408-03d0-4289-9fd3-3a07b35dd23f")];
 let songIndex = 0;
 createListRandom();
 listRandom.splice(0, 1); //remove the first song index at the first play

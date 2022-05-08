@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>DACNPM</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>DACNPM Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <springjpa.version>2.6.1</springjpa.version>
+    <springmvc.version>5.3.18</springmvc.version>
+    <hibernate.core.version>5.6.5.Final</hibernate.core.version>
+    <org.hibernate.persistence>1.0.0.Final</org.hibernate.persistence>
+    <hibernate.validator>6.2.0.Final</hibernate.validator>
+    <hibernate.entitymanager>5.6.5.Final</hibernate.entitymanager>
+    <jsp.api.version>2.3.1</jsp.api.version>
+     <jstl.version>1.2</jstl.version>
+     <postgressql.version>42.3.3</postgressql.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- jsp api -->
+                		<dependency>
+                			<groupId>javax.servlet.jsp</groupId>
+                			<artifactId>javax.servlet.jsp-api</artifactId>
+                			<version>${jsp.api.version}</version>
+                		</dependency>
+
+                		<!-- jstl -->
+                		<dependency>
+                			<groupId>javax.servlet</groupId>
+                			<artifactId>jstl</artifactId>
+                			<version>${jstl.version}</version>
+                		</dependency>
+
+<!--                 		hibernate -->
+                                <dependency>
+                    			<groupId>org.hibernate.javax.persistence</groupId>
+                    			<artifactId>hibernate-jpa-2.1-api</artifactId>
+                    			<version>${org.hibernate.persistence}</version>
+                    			</dependency>
+
+                    			<dependency>
+                    			<groupId>org.hibernate</groupId>
+                                  <artifactId>hibernate-core</artifactId>
+                                    <version>${hibernate.core.version}</version>
+                    			</dependency>
+                    			<dependency>
+                                    <groupId>org.hibernate</groupId>
+                                    <artifactId>hibernate-entitymanager</artifactId>
+                                    <version>${hibernate.entitymanager}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.hibernate.validator</groupId>
+                                    <artifactId>hibernate-validator</artifactId>
+                                    <version>${hibernate.validator}</version>
+                                </dependency>
+
+                            <!-- spring mvc -->
+                            <dependency>
+                                <groupId>org.springframework</groupId>
+                                <artifactId>spring-webmvc</artifactId>
+                                <version>${springmvc.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.springframework.data</groupId>
+                                <artifactId>spring-data-jpa</artifactId>
+                                <version>${springjpa.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.springframework</groupId>
+                                <artifactId>spring-context-support</artifactId>
+                                <version>5.3.18</version>
+                            </dependency>
+
+
+<!--                             postgressql -->
+
+                            <dependency>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <version>${postgressql.version}</version>
+                            </dependency>
+
+
+
+  </dependencies>
+
+  <build>
+    <finalName>DACNPM</finalName>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

@@ -41,7 +41,7 @@ class Bar {
         ctx.beginPath();
         ctx.strokeStyle = this.color;
         ctx.moveTo(0, 0);
-        ctx.lineTo(0, this.height / 4);
+        ctx.lineTo(0, this.height / 10);
         //ctx.strokeRect(this.x, this.y, this.x, this.height);
         //ctx.strokeRect(230, this.height + volume * 50, 4, 4);
         ctx.stroke();
@@ -50,13 +50,13 @@ class Bar {
         ctx.strokeStyle = 'blue';
         ctx.moveTo(this.x, this.y);
         //ctx.strokeRect(this.x, this.y, this.x, this.height);
-        ctx.strokeRect(0, 220, 10, this.height / 2);
+        ctx.strokeRect(0, 100, 10, this.height / 2);
         ctx.stroke();
 
         ctx.beginPath();
         ctx.strokeStyle = 'yellow';
         ctx.moveTo(this.x, this.y);
-        ctx.strokeRect(-230, 0, this.height / 10 + volume * 10, 1);
+        ctx.strokeRect(-105, 0, this.height / 10 + volume * 10, 1);
         ctx.stroke();
 
         // ctx.beginPath();
@@ -103,7 +103,7 @@ function main(songName, action) {
     if (action === 'play') {
         if (!audioContext) {
             const audio = document.getElementById('audio');
-            audio.src = `${songName}`;
+            audio.src = `${songName}.mp3`;
 
             audioContext = new AudioContext();
 

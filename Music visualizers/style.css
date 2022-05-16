@@ -9,7 +9,7 @@ body{
 }
 
 canvas {
-    background: black;
+    /* background: black; */
     position: absolute;
     top: 0;
     left: 0;
@@ -143,7 +143,7 @@ canvas {
     font-size: 14px;
     text-align: center;
     padding-top: 1px;
-    color: white;
+    color: black;
 }
 
 .progress-container {

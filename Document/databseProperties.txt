@@ -1,0 +1,4 @@
+URI: jdbc:postgresql://ec2-54-164-40-66.compute-1.amazonaws.com:5432/dek2ltviotd1hj
+username: yyrzzacbvjxsoh
+pass: 601fa75ffd296ea805c12926e8fdd19e4617b6ac1c8d7afb7c8caff57b43fe0e
+databse name: dek2ltviotd1hj

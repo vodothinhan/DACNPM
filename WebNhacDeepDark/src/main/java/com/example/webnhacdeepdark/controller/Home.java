@@ -1,6 +1,6 @@
 package com.example.webnhacdeepdark.controller;
 
-import com.example.webnhacdeepdark.entity.User;
+import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class Home {
     @RequestMapping(path = "/home", method = RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView mav = new ModelAndView("index");
-        User u = userService.findById(69);
+        Users u = userService.findById(69);
         mav.addObject("user", u);
 
         return mav;
@@ -30,4 +30,10 @@ public class Home {
         return mav;
 
     }
+
+    @RequestMapping(path = "/testUser", method = RequestMethod.GET)
+        public String test2(){
+            return "test";
+        }
+
 }

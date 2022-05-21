@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-form{
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-form .form-login{
+    width: 500px;
+}
+body {
+    background-image: url("background.jpeg");
+}
+.spinner-reset-otp{
+    display: none;
+}
+.spinner-reset-otp.active{
+    display: inline-block;
+}
+.btn-reset-otp.active{
+    display: none !important ;
+}
+.toast-success{
+    display: none;
+}
+.toast-success.active{
+    display: block;
+}
+.toast-danger{
+    display: none;
+}
+.toast-danger.active{
+    display: block;
+}

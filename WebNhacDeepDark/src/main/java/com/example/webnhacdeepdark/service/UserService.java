@@ -21,4 +21,17 @@ public class UserService {
     public void deleteUser(int id){
         userRepositories.deleteById(id);
     }
+
+    public  Users findByEmail(String email){
+        return userRepositories.findFirstByEmail(email) ;
+    }
+    public boolean isExistEmail(String email){
+       if(findByEmail(email)==null) return  false ;
+       return true ;
+    }
+    public boolean login(String email , String pass) {
+        if(userRepositories.findFirstByEmailAndPassword(email, pass)==null) return  false;
+        return  true ;
+
+    }
 }

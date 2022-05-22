@@ -26,9 +26,13 @@
     <form  novalidate method="post">
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Đăng nhập</h1>
-            <div class="alert alert-success" role="alert">
-                Bạn đã thay đổi mật khẩu thành công
-            </div>
+
+            <c:if test="${register==true}">
+                <div class="alert alert-success" role="alert">
+                    Bạn đã đăng kí tài khoản thành công
+                </div>
+            </c:if>
+
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
                 <input type="email" class="form-control  input-email" id="Email"  required placeholder="Email">

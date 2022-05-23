@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +34,13 @@
                    Bạn hãy thử lại sau vài phút nữa !
                 </div>
             </c:if>
+<%--            <spring:bind path="email">--%>
+<%--                <div class="mb-4">--%>
+<%--                    <label for="Email" class="form-label">Email*</label>--%>
+<%--                    <form:input type="email" path="email" cssClass="form-control input-email" id="Email"  placeholder="Email"/>--%>
+<%--                    <form:errors path="email" cssClass="invalid-feedback err-from-email" />--%>
+<%--                </div>--%>
+<%--            </spring:bind>--%>
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
                 <form:input type="email" path="email" cssClass="form-control input-email" id="Email"  placeholder="Email"/>

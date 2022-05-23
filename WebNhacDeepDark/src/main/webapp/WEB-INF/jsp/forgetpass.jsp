@@ -20,12 +20,17 @@
 </head>
 <body>
 <div class="container-form">
-    <form  method="post" novalidate>
+    <form  method="post" novalidate action="/forgetpass">
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Quên mật khẩu</h1>
+            <c:if test="${email==false}">
+                <div class="alert alert-danger" role="alert">
+                    Email không tồn tại !
+                </div>
+            </c:if>
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
-                <input type="email" class="form-control input-email" id="Email"  placeholder="Email">
+                <input type="email" name="email" class="form-control input-email" id="Email"  placeholder="Email">
                 <div class="invalid-feedback err-from-email">
                     Trường này phải là email !
                 </div>
@@ -39,7 +44,7 @@
             </div>
             <div class="mb-4">
                 <label for="repeat" class="form-label">Nhập lại mật khẩu*</label>
-                <input type="password" class="form-control repeat" id="repeat"  placeholder="Mật khẩu">
+                <input name="pass" type="password" class="form-control repeat" id="repeat"  placeholder="Mật khẩu">
                 <div class="invalid-feedback err-from-repeat">
                     Trường này không được trống !
                 </div>

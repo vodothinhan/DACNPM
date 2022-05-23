@@ -23,7 +23,7 @@
 <body>
 
 <div class="container-form">
-    <form  novalidate method="post">
+    <form  novalidate action="/login" method="post">
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Đăng nhập</h1>
 
@@ -32,17 +32,22 @@
                     Bạn đã đăng kí tài khoản thành công
                 </div>
             </c:if>
+            <c:if test="${login==false}">
+                <div class="alert alert-danger" role="alert">
+                    Thông tin đăng nhập không đúng !
+                </div>
+            </c:if>
 
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
-                <input type="email" class="form-control  input-email" id="Email"  required placeholder="Email">
+                <input type="email" name="email" class="form-control  input-email" id="Email"  required placeholder="Email">
                 <div class="invalid-feedback err-from-server">
 
                 </div>
             </div>
             <div class="mb-4">
                 <label for="password" class="form-label">Mật khẩu*</label>
-                <input type="password" class="form-control  input-pass" id="password" required placeholder="Mật khẩu">
+                <input name="pass" type="password" class="form-control  input-pass" id="password" required placeholder="Mật khẩu">
                 <div class="invalid-feedback">
                     Trường này không được trống !
                 </div>

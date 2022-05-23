@@ -1,0 +1,118 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Dell
+  Date: 5/22/2022
+  Time: 6:30 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Dark Theme</title>
+
+    <link rel="stylesheet" href="/css/playMusic.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
+<%--    <script src="https://kit.fontawesome.com/bc07535803.js" crossorigin="anonymous"></script>--%>
+
+</head>
+
+<body>
+<div> <canvas id="myCanvas"></canvas></div>
+<div> <canvas id="canvas1"></canvas></div>
+
+<div style="width: 100%; height: 100px;">
+
+</div>
+
+<div style="width: 100%; height: 600px;"></div>
+
+<dic class="music-container" id="music-container">
+
+    <div class="progress-container" id="progress-container">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <audio id="audio"></audio>
+
+    <div class="audio-container" id="audio-container">
+
+        <audio id="audio"></audio>
+
+        <div class="img-container">
+            <img src="/img/musicplay/musicNote.png" id="song-image" alt="music-cover" id="cover" height="36" width="36"/>
+        </div>
+
+        <div class="like">
+            <button id="like" class="action-btn">
+                <i class="fa-solid fa-heart" title="Thích"></i>
+            </button>
+        </div>
+
+        <div class="add-playlist">
+            <button id="add-playlist" class="action-btn">
+                <i class="fa-solid fa-list" title="Thêm vào danh sách"></i>
+            </button>
+        </div>
+
+        <div class="lyrics">
+            <button id="lyrics" class="action-btn">
+                <i class="fa-solid fa-music" title="Mở lời bài hát"></i>
+            </button>
+        </div>
+
+        <div class="navigation">
+            <button id="random" class="action-btn">
+                <i class="fa-solid fa-shuffle" title="Phát ngẫu nhiên"></i>
+            </button>
+            <button id="repeat" class="action-btn">
+                <p class="repeat-one" id="repeat-one">1</p>
+                <i class="fa-solid fa-repeat" title="Phát lại"></i>
+            </button>
+            <button id="prev" class="action-btn">
+                <i class="fas fa-backward"></i>
+            </button>
+            <button id="play" class="action-btn action-btn-big">
+                <i class="fas fa-play"></i>
+            </button>
+            <button id="next" class="action-btn">
+                <i class="fas fa-forward"></i>
+            </button>
+        </div>
+
+        <div class="music-info">
+            <div class="song-name" id="song-name">
+                Song No.1 are playing
+            </div>
+        </div>
+
+        <div class="volume">
+            <div class="volume-button">
+                <button id="volume" class="action-btn">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+            <div class="volume-slider">
+                <input type="range" class="slider" id="volume-slider" step="0.05" min="0" max="1" value="1">
+            </div>
+        </div>
+
+        <div class="song-length" id="song-length">
+            0:00/0:00
+        </div>
+
+    </div>
+</dic>
+
+
+<script src="/js/audioVisual.js"></script>
+<script src="/js/audioPlayers.js"></script>
+<!-- <script src="microphone.js"></script> -->
+<!-- <script src="m3.js"></script> -->
+<!-- <script src="animation.js"></script> -->
+
+</body>
+
+</html>

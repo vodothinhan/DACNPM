@@ -4,9 +4,15 @@ var success = document.querySelector(".toast-success")
 var danger = document.querySelector(".toast-danger")
 var otp = document.querySelector(".input-otp")
 var errOtp = document.querySelector(".err-otp")
+var btnComplete = document.querySelector(".btn-complete");
 var isOTP = false
 
-
+btnComplete.addEventListener("click" , (event) =>{
+    if(!isOTP) {
+        event.preventDefault()
+        checkOTP()
+    }
+})
 
 otp.addEventListener("blur" , () =>{
     checkOTP()
@@ -18,7 +24,7 @@ checkOTP()
 
 function checkOTP(){
     let value = otp.value.trim()
-    let regex = new RegExp(/^[0-9]{6}/)
+    let regex = new RegExp(/^[0-9]{6}$/)
     if(value.length===0) {
         isOTP = false
         errOtp.innerHTML = " Trường này không được trống !"
@@ -39,24 +45,25 @@ function checkOTP(){
     return;
 }
 
-btn.addEventListener("click" , async (event) =>{
-   if(!isOTP){
+btn.addEventListener("click" ,  (event) =>{
+
        event.preventDefault()
-       return
-   }
     blockOrNone()
     let url = btn.href ;
     fetch(url).then(res => res.json())
         .then(data =>{
-            if(data.status==="stopped"){
+            if(data.message==="SUCCESS"){
                 removeToast('danger')
                 if(!success.classList.contains('active')) success.classList.toggle('active')
                 blockOrNone()
                 return
             }
-            removeToast('success')
-            if(!danger.classList.contains('active')) danger.classList.toggle('active')
-            blockOrNone()
+           if(data.message==="RUNNING"){
+               removeToast('success')
+               if(!danger.classList.contains('active')) danger.classList.toggle('active')
+               blockOrNone()
+               return;
+           }
         })
         .catch(err =>{
             removeToast('success')

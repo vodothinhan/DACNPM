@@ -17,17 +17,6 @@ login.addEventListener('click' , (event) =>{
 
 email.addEventListener('blur' , () =>{
     checkEmail()
-//     email.value.trim().length>0 && fetch("")
-//         .then(res => res.json())
-//         .then(data =>{
-//             email.classList.contains('is-invalid') && email.classList.remove('is-invalid')
-//             email.classList.add('is-valid')
-//         })
-//         .catch(error =>{
-//             email.classList.contains('is-valid')&& email.classList.remove('is-valid')
-//             email.classList.add('is-invalid')
-//             err.innerHTML = ' Vui lòng thử lại trong vài phút!'
-//         })
  })
 email.addEventListener('input' , () =>{
     checkEmail()

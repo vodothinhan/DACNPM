@@ -46,18 +46,23 @@
 <body>
 
 <div class="container-form">
-    <form  method="post" novalidate>
+    <form  method="post" novalidate action="/sendOTP">
         <div class="form-login bg-body rounded shadow p-5 ">
             <h1 class="display-5 mb-5">Nhập mã OTP</h1>
             <div class="alert alert-success toast-success" role="alert">
                 Mã OTP gửi lại thành công
             </div>
-            <div class="alert alert-danger toast-danger" role="alert">
-                Vui lòng đợi vài phút để gửi lại mã
+            <div class="alert  alert-warning toast-danger" role="alert">
+                Vui lòng đợi hết 2 phút để gửi lại mã
             </div>
-            <c:if test="${timeFailure==true}">
+            <c:if test="${timeCode==false}">
                 <div class="alert alert-danger" role="alert">
                     Mã OTP đã quá hạn
+                </div>
+            </c:if>
+            <c:if test="${code==false}">
+                <div class="alert alert-danger" role="alert">
+                    Mã OTP không chính xác
                 </div>
             </c:if>
             <p class="lead text-center">
@@ -74,19 +79,17 @@
                 </div>
             </div>
             <div class="col-12  spiner-reset">
-                <button class="btn btn-primary" type="submit">Hoàn tất</button>
+                <button class="btn btn-primary btn-complete" type="submit">Hoàn tất</button>
                 <div class="spinner-border spinner-border-sm ms-4 spinner-reset-otp" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <a href="#" class="link-dark d-inline-block ms-4 btn-reset-otp">Gửi lại mã</a>
+                <a href="/resetOTP?email=${email}" class="link-dark d-inline-block ms-4 btn-reset-otp">Gửi lại mã</a>
             </div>
         </div>
 
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
 <script src="/js/login_register_otp/otp.js"></script>
 
 </body>

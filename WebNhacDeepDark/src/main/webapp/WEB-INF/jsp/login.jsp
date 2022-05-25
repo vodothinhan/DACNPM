@@ -32,6 +32,11 @@
                     Bạn đã đăng kí tài khoản thành công
                 </div>
             </c:if>
+            <c:if test="${resetPass==true}">
+                <div class="alert alert-success" role="alert">
+                    Bạn đã  thay đổi mật khẩu thành công
+                </div>
+            </c:if>
             <c:if test="${login==false}">
                 <div class="alert alert-danger" role="alert">
                     Thông tin đăng nhập không đúng !

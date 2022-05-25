@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
+    private Users user ;
     @Autowired
     UserRepositories userRepositories;
     @Autowired
@@ -48,4 +49,39 @@ public class UserService {
         }
          return  true ;
     }
+    @Transactional
+    public boolean updateCodeAndTimeResetPass(String email , String code){
+        try{
+            Users user = findByEmail(email);
+            user.setCodeRecovery(code);
+            user.setTimeRecovery(System.currentTimeMillis());
+            userRepositories.save(user);
+            return  true ;
+        } catch (Exception exception){
+            return  false ;
+        }
+    }
+    public  boolean validTimeCode(String email){
+        Users users = findByEmail(email);
+        if(users==null) return  false ;
+        this.user = users ;
+        long time = users.getTimeRecovery() ;
+       if(((System.currentTimeMillis()-time)/1000)>60){
+        return false ;
+        }
+        return true ;
+
+    }
+    public boolean validCode(String otp){
+        if(this.user.getCodeRecovery().equals(otp)){
+            return true ;
+        }
+        return false ;
+    }
+    @Transactional
+    public void updatePass(String pass){
+        this.user.setPassword(pass);
+        userRepositories.save(user);
+    }
+
 }

@@ -16,8 +16,10 @@ public class LoginController {
     UserService userService ;
     @RequestMapping(value = {"" , "/login"} , method = RequestMethod.GET)
     public ModelAndView loginPage(ModelMap model ,
-           @RequestParam(value = "register" ,required = false) boolean register){
+           @RequestParam(value = "register" ,required = false) boolean register,
+            @RequestParam(value = "resetPass", required = false) boolean resetPass){
         model.addAttribute("register", register);
+        model.addAttribute("resetPass", resetPass);
 
         return new ModelAndView("login" , model);
     }

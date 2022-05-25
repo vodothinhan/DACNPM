@@ -28,11 +28,16 @@
                     Email không tồn tại !
                 </div>
             </c:if>
+            <c:if test="${sendMail==false}">
+                <div class="alert alert-danger" role="alert">
+                    Vui lòng thử lại trong vài phút !
+                </div>
+            </c:if>
             <div class="mb-4">
                 <label for="Email" class="form-label">Email*</label>
-                <input type="email" name="email" class="form-control input-email" id="Email"  placeholder="Email">
+                <input type="email" name="email" class="form-control input-email ${empty email?"":"is-invalid"}" id="Email"  placeholder="Email"
+                value="${email==null?"":email}">
                 <div class="invalid-feedback err-from-email">
-                    Trường này phải là email !
                 </div>
             </div>
             <div class="mb-4">

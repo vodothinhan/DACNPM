@@ -7,22 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Table(name = "singer")
-public class Singer {
+public class PlayList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id_singer")
     private int id;
     private String name;
-    @JsonIgnore
-    @OneToMany(mappedBy = "singer")
-    private List<Song> songList = new ArrayList<>();
 
-    public Singer(String name) {
+    @JsonIgnore
+    @OneToMany(mappedBy = "playList")
+    private List<Song> listSongs = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users users;
+
+    public PlayList(String name){
         this.name = name;
     }
 
-    public Singer(){}
+    public PlayList(){}
 
     public int getId() {
         return id;
@@ -40,11 +43,19 @@ public class Singer {
         this.name = name;
     }
 
-    public List<Song> getSongList() {
-        return songList;
+    public List<Song> getListSongs() {
+        return listSongs;
     }
 
-    public void setSongList(List<Song> songList) {
-        this.songList = songList;
+    public void setListSongs(List<Song> listSongs) {
+        this.listSongs = listSongs;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

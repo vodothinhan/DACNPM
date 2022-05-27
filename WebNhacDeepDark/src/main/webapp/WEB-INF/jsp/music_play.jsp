@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,19 +16,45 @@
 
     <link rel="stylesheet" href="/css/playMusic.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <%--    <script src="https://kit.fontawesome.com/bc07535803.js" crossorigin="anonymous"></script>--%>
 
 </head>
 
 <body>
+<div class="background"></div>
 <div> <canvas id="myCanvas"></canvas></div>
-<div> <canvas id="canvas1"></canvas></div>
 
-<div style="width: 100%; height: 100px;">
+<div class="header" style="width: 100%; height: 100px;"></div>
+
+<div class="list" style="width: 100%; height: 600px;">
+
+    <div class="recommend">
+        <h2>CÙNG THỂ LOẠI</h2>
+        <div class="recommend-list">
+            <div class="list-group">
+                <div style="display: flex;">
+                    <a href="#" class="list-group-item" style="width: 70%;">First item</a>
+                    <a href="#" class="list-group-item" style="width: 30%; text-align: right;">First item</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="current">
+        <h2>DANH SÁCH PHÁT</h2>
+        <div class="recommend-list">
+            <div class="list-group">
+                <div style="display: flex;">
+                    <a href="#" class="list-group-item" style="width: 70%;">First item</a>
+                    <a href="#" class="list-group-item" style="width: 30%; text-align: right;">First item</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
-
-<div style="width: 100%; height: 600px;"></div>
 
 <dic class="music-container" id="music-container">
 
@@ -107,11 +134,8 @@
 </dic>
 
 
-<script src="/js/audioVisual.js"></script>
-<script src="/js/audioPlayers.js"></script>
-<!-- <script src="microphone.js"></script> -->
-<!-- <script src="m3.js"></script> -->
-<!-- <script src="animation.js"></script> -->
+<script src="js/audioVisual.js"></script>
+<script src="js/audioPlayers.js"></script>
 
 </body>
 

@@ -13,6 +13,9 @@ public class Contact {
     private String content;
     //@Column(name = "date_send")
     private Date dateSend;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users users;
 
     public Contact(String content, Date dateSend) {
         this.content = content;
@@ -45,5 +48,13 @@ public class Contact {
 
     public void setDateSend(Date dateSend) {
         this.dateSend = dateSend;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

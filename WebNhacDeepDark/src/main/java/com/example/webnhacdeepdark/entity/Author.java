@@ -19,6 +19,10 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private List<Album> albumList = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "author")
+    private List<Song> songList = new ArrayList<>();
+
     public Author(String name) {
         this.name = name;
     }
@@ -43,5 +47,17 @@ public class Author {
 
     public List<Album> getAlbumList() {
         return albumList;
+    }
+
+    public void setAlbumList(List<Album> albumList) {
+        this.albumList = albumList;
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
     }
 }

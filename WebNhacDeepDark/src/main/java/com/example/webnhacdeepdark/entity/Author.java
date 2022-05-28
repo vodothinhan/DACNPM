@@ -7,13 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Table(name = "author")
+@Table(name = "author")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_author")
     private int id;
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "author")
+    private List<Song> songs = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "author")
@@ -43,5 +47,9 @@ public class Author {
 
     public List<Album> getAlbumList() {
         return albumList;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
     }
 }

@@ -1,7 +1,11 @@
 package com.example.webnhacdeepdark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 //@Table(name = "album")
@@ -16,6 +20,10 @@ public class Album {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs = new ArrayList<>();
 
     public Album(String name, Date dateReleased) {
         this.name = name;
@@ -59,4 +67,9 @@ public class Album {
     public void addAuthor(Author author) {
         this.author = author;
     }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
 }

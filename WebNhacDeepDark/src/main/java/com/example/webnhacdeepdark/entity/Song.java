@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 @Entity
-//@Table(name = "song")
+@Table(name = "song")
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,22 @@ public class Song {
     private Date dateAdd;
     //@Column(name = "num_listen")
     private int numListen;
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id",referencedColumnName = "id")
+    private Author author;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "album_id",referencedColumnName = "id")
+    private Album album;
 
     public Song(String name, String type, String linkImage, String linkMP3,
                 String status, Date dateAdd, int numListen) {
@@ -100,5 +116,13 @@ public class Song {
 
     public void setNumListen(int numListen) {
         this.numListen = numListen;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public Album getAlbum() {
+        return album;
     }
 }

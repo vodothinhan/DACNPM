@@ -36,10 +36,10 @@ class Bar {
 
         ctx.translate(0, 0);
         ctx.rotate(this.index * 0.04);
-        ctx.scale(1 + volume / 10, 1 + volume / 4);
+        ctx.scale(1 + volume / 5, 1 + volume / 4);
 
         ctx.beginPath();
-        ctx.strokeStyle = this.color;
+        ctx.strokeStyle = 'yellow';
         ctx.moveTo(0, 0);
         ctx.lineTo(0, this.height / 4);
         //ctx.strokeRect(this.x, this.y, this.x, this.height);
@@ -50,13 +50,13 @@ class Bar {
         ctx.strokeStyle = 'blue';
         ctx.moveTo(this.x, this.y);
         //ctx.strokeRect(this.x, this.y, this.x, this.height);
-        ctx.strokeRect(0, 220, 10, this.height / 2);
+        ctx.strokeRect(0, 190, 10, this.height / 4);
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.strokeStyle = 'yellow';
+        ctx.strokeStyle = this.color;
         ctx.moveTo(this.x, this.y);
-        ctx.strokeRect(-230, 0, this.height / 10 + volume * 10, 1);
+        ctx.strokeRect(-195, 0, this.height / 20 + volume * 10, 1);
         ctx.stroke();
 
         // ctx.beginPath();

@@ -7,30 +7,31 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Dark Theme</title>
 
-    <link rel="stylesheet" href="/css/playMusic.css">
+    <link rel="stylesheet" href="/css/playMusic2.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-<%--    <script src="https://kit.fontawesome.com/bc07535803.js" crossorigin="anonymous"></script>--%>
 
 </head>
 
 <body>
+
 <div class="background"></div>
 <div> <canvas id="myCanvas"></canvas></div>
 
-<div class="header" style="width: 100%; height: 100px;"></div>
+<div class="header" style="width: 100%; height: 100px;">
+    <jsp:include page="header.jsp" />
+</div>
 
-<div class="list" style="width: 100%; height: 600px;">
+<div class="list" style="width: 100%; height: 550px;">
 
     <div class="recommend">
-        <h2>CÙNG THỂ LOẠI</h2>
+        <h2 style="color: white">CÙNG THỂ LOẠI</h2>
         <div class="recommend-list">
             <div class="list-group">
                 <div style="display: flex;">
@@ -43,7 +44,7 @@
     </div>
 
     <div class="current">
-        <h2>DANH SÁCH PHÁT</h2>
+        <h2 style="color: white">DANH SÁCH PHÁT</h2>
         <div class="recommend-list">
             <div class="list-group">
                 <div style="display: flex;">
@@ -134,8 +135,8 @@
 </dic>
 
 
-<script src="js/audioVisual.js"></script>
-<script src="js/audioPlayers.js"></script>
+<script src="/js/audioVisualizers.js"></script>
+<script src="/js/audioPlayer.js"></script>
 
 </body>
 

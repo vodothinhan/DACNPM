@@ -134,7 +134,12 @@
     </div>
 </dic>
 
-
+<script>
+    var listSongName = new Array(0);
+    <c:forEach var="song" items="${playlist}">
+        listSongName.push(`${song}`);
+    </c:forEach>
+</script>
 <script src="/js/audioVisualizers.js"></script>
 <script src="/js/audioPlayer.js"></script>
 

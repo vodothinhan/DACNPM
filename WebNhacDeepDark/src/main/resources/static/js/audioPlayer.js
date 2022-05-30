@@ -329,7 +329,7 @@ repeatButton.addEventListener('click', (e) => {
             e.target.style.filter = "brightness(100%)";
             e.target.style.color = "white";
             addIcon.style.filter = "brightness(0%)"
-            addIcon.style.color = "white";
+            addIcon.style.color = "transparent";
         }
     }
 });

@@ -128,6 +128,7 @@ canvas {
     font-weight: bold;
     font-size: 15px;
     filter: brightness(0%);
+    color: transparent;
 }
 
 .action-btn-big {
@@ -290,6 +291,7 @@ canvas {
 .list {
     display: flex;
     color: white;
+    margin-top: 20px;
 }
 
 .recommend {
@@ -297,6 +299,7 @@ canvas {
     margin-right: auto;
     margin-left: 0;
     padding-left: 50px;
+    margin-top: 20px;
 }
 
 .current {
@@ -304,6 +307,7 @@ canvas {
     margin-left: auto;
     margin-right: 0;
     padding-right: 50px;
+    margin-top: 20px;
 }
 
 .list-group-item {
@@ -313,10 +317,11 @@ canvas {
     border-bottom: 1px solid white !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
+    margin-bottom: 10px;
 }
 
 .recommend-list {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 

@@ -12,18 +12,18 @@ import java.util.List;
 @Service
 public class SongService {
     @Autowired
-    SongRepositories songService;
+    SongRepositories songRepositories;
 
     public Song getSongByID(int id) {
-        return songService.findById(id).get();
+        return songRepositories.findById(id).get();
     }
 
     public Song saveSong(Song album) {
-        return songService.save(album);
+        return songRepositories.save(album);
     }
 
     public List<Song> findAll() {
-        return songService.findAll();
+        return songRepositories.findAll();
     }
 
     public List<Song> findByAuthor(Author author, ArrayList<Song> listByNameAuthor) {
@@ -40,4 +40,27 @@ public class SongService {
         System.out.println("listByNameAuthor = " + listByNameAuthor);
         return listByNameAuthor;
     }
+    
+
+    public Song saveSong(Song song){
+        return songRepositories.save(song);
+    }
+
+    public Song findById(int id){
+        return songRepositories.findById(id).get();
+    }
+
+    public List<Song> findSongByType(String type){
+        return songRepositories.findSongByType(type);
+    }
+
+    public List<Song> findTop10SongByNumListen(){
+        return songRepositories.findTop10ByOrderByNumListenDesc();
+    }
+
+    public List<Song> find4NewSong(){
+        return songRepositories.findTop4ByOrderByDateAddAsc();
+    }
+
+    public List<Song> findSongBySinger(int idSinger) {return songRepositories.findSongBySingerId(idSinger);}
 }

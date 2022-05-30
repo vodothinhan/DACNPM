@@ -39,7 +39,12 @@ function createListRandom() {
 }
 
 //list song
-const songs = [new Song("Evangelion", "/mp3/Evan2"), new Song("Save me", "Save me"), new Song("Moonlight shadow", "Moonlight shadow")];
+const songs = new Array(listSongName.length);
+for (let i = 0; i < songs.length; i++) {
+    songs[i] = new Song(listSongName[i], listSongName[i]);
+    console.log(songs[i]);
+}
+
 let songIndex = 0;
 createListRandom();
 listRandom.splice(0, 1); //remove the first song index at the first play
@@ -148,6 +153,13 @@ prevButton.addEventListener('click', () => {
         main(url, 'next');
     }
 });
+
+function playSpecificSong(Specname){
+    let index = songs.indexOf(Specname);
+    songIndex--;
+    checkSong();
+    main(url, 'next');
+}
 
 //adio event
 audio.addEventListener('timeupdate', updateProgress);

@@ -40,11 +40,6 @@ public class SongService {
         System.out.println("listByNameAuthor = " + listByNameAuthor);
         return listByNameAuthor;
     }
-    
-
-    public Song saveSong(Song song){
-        return songRepositories.save(song);
-    }
 
     public Song findById(int id){
         return songRepositories.findById(id).get();

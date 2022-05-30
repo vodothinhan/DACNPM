@@ -27,9 +27,6 @@ public class Home {
     @Autowired
     SongService songService;
 
-    @Autowired
-    SongService songService;
-
     @RequestMapping(path = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("index");
@@ -50,8 +47,6 @@ public class Home {
         return mav;
 
     }
-
-    @RequestMapping(path = "/testUser", method = RequestMethod.GET)
 
     @RequestMapping(path = "/search")
     public ModelAndView search(@RequestParam(name = "inputSearch") String inputSearch) {

@@ -5,6 +5,8 @@ import com.example.webnhacdeepdark.repositories.AuthorRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthorService {
     @Autowired
@@ -17,4 +19,7 @@ public class AuthorService {
     public Author saveAuthor(Author author){
         return authorRepositories.save(author);
     }
+
+    public List<Author> findByNameContaining(String name) {
+        return authorRepositories.findByNameContaining(name);};
 }

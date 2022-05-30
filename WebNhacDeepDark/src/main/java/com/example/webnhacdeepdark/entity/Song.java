@@ -133,4 +133,20 @@ public class Song {
     public void setAlbum(Album album) {
         this.album = album;
     }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Singer getSinger() {
+        return singer;
+    }
+
+    public void setSinger(Singer singer) {
+        this.singer = singer;
+    }
 }

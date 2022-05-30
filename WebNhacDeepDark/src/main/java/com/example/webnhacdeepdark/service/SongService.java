@@ -18,10 +18,6 @@ public class SongService {
         return songRepositories.findById(id).get();
     }
 
-    public Song saveSong(Song album) {
-        return songRepositories.save(album);
-    }
-
     public List<Song> findAll() {
         return songRepositories.findAll();
     }

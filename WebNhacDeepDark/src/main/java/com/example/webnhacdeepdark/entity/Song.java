@@ -23,6 +23,22 @@ public class Song {
     //@Column(name = "num_listen")
     private int numListen;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "playlist_id", referencedColumnName = "id")
+    private PlayList playList;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "album_id", referencedColumnName = "id")
+    private Album album;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "singer_id", referencedColumnName = "id")
+    private Singer singer;
+
     public Song(String name, String type, String linkImage, String linkMP3,
                 String status, Date dateAdd, int numListen) {
         this.name = name;
@@ -100,5 +116,37 @@ public class Song {
 
     public void setNumListen(int numListen) {
         this.numListen = numListen;
+    }
+
+    public PlayList getPlayList() {
+        return playList;
+    }
+
+    public void setPlayList(PlayList playList) {
+        this.playList = playList;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Singer getSinger() {
+        return singer;
+    }
+
+    public void setSinger(Singer singer) {
+        this.singer = singer;
     }
 }

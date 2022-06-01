@@ -1,10 +1,13 @@
 package com.example.webnhacdeepdark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 //@Table(name = "users")
@@ -24,6 +27,14 @@ public class Users {
     private String codeRecovery;
     //@Column(name = "time_recovery")
     private long timeRecovery;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "users")
+    private List<PlayList> playLists = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "users")
+    private List<Contact> contacts = new ArrayList<>();
 
     public Users(String email, String password, String role, String status,
                 Date dateOfBirth, String gender, String codeRecovery, long timeRecovery) {
@@ -126,5 +137,21 @@ public class Users {
 
     public void setTimeRecovery(long timeRecovery) {
         this.timeRecovery = timeRecovery;
+    }
+
+    public List<PlayList> getPlayLists() {
+        return playLists;
+    }
+
+    public void setPlayLists(List<PlayList> playLists) {
+        this.playLists = playLists;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 }

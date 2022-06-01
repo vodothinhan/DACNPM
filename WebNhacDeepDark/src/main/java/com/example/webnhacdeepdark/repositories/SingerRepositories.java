@@ -5,4 +5,5 @@ import com.example.webnhacdeepdark.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SingerRepositories extends JpaRepository<Singer, Integer> {
+    public Singer findSingerById(int id);
 }

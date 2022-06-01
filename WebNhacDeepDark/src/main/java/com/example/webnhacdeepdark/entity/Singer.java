@@ -1,6 +1,10 @@
 package com.example.webnhacdeepdark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name = "singer")
@@ -10,6 +14,9 @@ public class Singer {
     //@Column(name = "id_singer")
     private int id;
     private String name;
+    @JsonIgnore
+    @OneToMany(mappedBy = "singer")
+    private List<Song> songList = new ArrayList<>();
 
     public Singer(String name) {
         this.name = name;
@@ -31,5 +38,13 @@ public class Singer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
     }
 }

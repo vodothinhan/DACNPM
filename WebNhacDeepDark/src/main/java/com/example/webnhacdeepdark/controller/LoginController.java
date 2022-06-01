@@ -32,6 +32,6 @@ public class LoginController {
             model.addAttribute("login",false);
             return new ModelAndView("login",model);
         }
-        return new ModelAndView("login", model);
+        return new ModelAndView("redirect:/main", model);
     }
 }

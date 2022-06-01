@@ -26,7 +26,7 @@ public class Users {
     //@Column(name = "code_recovery")
     private String codeRecovery;
     //@Column(name = "time_recovery")
-    private Timestamp timeRecovery;
+    private long timeRecovery;
 
     @JsonIgnore
     @OneToMany(mappedBy = "users")
@@ -37,7 +37,7 @@ public class Users {
     private List<Contact> contacts = new ArrayList<>();
 
     public Users(String email, String password, String role, String status,
-                Date dateOfBirth, String gender, String codeRecovery, Timestamp timeRecovery) {
+                Date dateOfBirth, String gender, String codeRecovery, long timeRecovery) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -131,11 +131,11 @@ public class Users {
         this.codeRecovery = codeRecovery;
     }
 
-    public Timestamp getTimeRecovery() {
+    public long getTimeRecovery() {
         return timeRecovery;
     }
 
-    public void setTimeRecovery(Timestamp timeRecovery) {
+    public void setTimeRecovery(long timeRecovery) {
         this.timeRecovery = timeRecovery;
     }
 

@@ -48,20 +48,6 @@ public class Home {
 
     }
 
-    @RequestMapping(path = "/search")
-    public ModelAndView search(@RequestParam(name = "inputSearch") String inputSearch) {
-        ModelAndView mav = new ModelAndView("search");
-        List<Song> listSearchName = new ArrayList<Song>();
-        List<Author> author = authorService.findByNameContaining(inputSearch);
-        System.out.println("author = " + author);
-        ArrayList<Song> listByNameAuthor = new ArrayList<>();
-        for (int i = 0; i < author.size(); i++) {
-            listSearchName = songService.findByAuthor(author.get(i),listByNameAuthor);
-        }
-        mav.addObject("listSearchName", listSearchName);
-        return mav;
-    }
-
     public String test2() {
         return "test";
     }

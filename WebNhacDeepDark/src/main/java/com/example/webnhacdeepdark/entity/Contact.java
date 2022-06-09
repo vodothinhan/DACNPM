@@ -13,13 +13,14 @@ public class Contact {
     private String content;
     //@Column(name = "date_send")
     private Date dateSend;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users users;
 
-    public Contact(String content, Date dateSend) {
+    public Contact(String content, Date dateSend, Users users) {
         this.content = content;
         this.dateSend = dateSend;
+        this.users = users;
     }
 
     public Contact(){

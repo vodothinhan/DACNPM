@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.service;
 
+import com.example.webnhacdeepdark.entity.Contact;
 import com.example.webnhacdeepdark.repositories.ContactRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,4 +9,6 @@ import org.springframework.stereotype.Service;
 public class ContactService {
     @Autowired
     ContactRepositories contactRepositories;
+
+    public void save(Contact contact) {contactRepositories.save(contact);};
 }

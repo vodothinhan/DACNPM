@@ -21,7 +21,6 @@ public class SingerService {
     public Singer saveAuthor(Singer singer){
         return singerRepositories.save(singer);
     }
-    public List<Singer> findByNameContaining(String name) { return singerRepositories.findByNameContaining(name);};
 
     public List<Singer> findByNameContainingIgnoreCase(String name) { return singerRepositories.findByNameContainingIgnoreCase(name);};
 

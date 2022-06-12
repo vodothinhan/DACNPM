@@ -93,18 +93,18 @@ public class SongService {
         return listByNameAuthor;
     }
 
-    public List<Song> findByNameContaining(String nameSong) {
+    public List<Song> findByNameContainingIgnoreCase(String nameSong) {
         return songRepositories.findByNameContainingIgnoreCase(nameSong);
     }
 
-    public List<Song> findBySinger(Singer singer) {
-        List<Song> listByNameSinger = new ArrayList<>();
-        List<Song> list = findAll();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getSinger().getId() == singer.getId()) {
-                listByNameSinger.add(list.get(i));
-            }
-        }
-        return listByNameSinger;
-    }
+//    public List<Song> findBySinger(Singer singer) {
+//        List<Song> listByNameSinger = new ArrayList<>();
+//        List<Song> list = findAll();
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i).getSinger().getId() == singer.getId()) {
+//                listByNameSinger.add(list.get(i));
+//            }
+//        }
+//        return listByNameSinger;
+//    }
 }

@@ -99,3 +99,11 @@
 	margin: 20px 0 0 15px;
 	padding : 0px;
 }
+/*.btn-group-vertical button:hover, .btn-group-vertical button.active { background-color:#ff5500; }*/
+
+.btn-group-vertical .active {
+	background-color:#ff5500;
+}
+#responsive-nav{
+	margin-left : -15px !important;
+}

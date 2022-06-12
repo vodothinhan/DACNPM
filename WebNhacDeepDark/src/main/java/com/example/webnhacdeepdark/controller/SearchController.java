@@ -27,31 +27,38 @@ public class SearchController {
     @RequestMapping(path = "/search/Song")
     public ModelAndView searchSinger(@RequestParam(name = "inputSearch") String inputSearch) {
         ModelAndView mav = new ModelAndView("search");
-        List<Song> last = new ArrayList<>();
-        List<Song> listSearchName = new ArrayList<>();
+        String messageAll = "";String messageNameSong = "";String messageNameSinger = "";String messageNameAllbum = "";
         List<Singer> singer = singerService.findByNameContainingIgnoreCase(inputSearch);
-        List<Song> songs = new ArrayList<>();
-        List<Song> listSearchNameSong = songService.findByNameContaining(inputSearch);
-        for (int i = 0; i < singer.size(); i++) {
-            listSearchName = songService.findBySinger(singer.get(i));
-            for (int j = 0; j < listSearchName.size(); j++) {
-                last.add(listSearchName.get(j));
-                songs.add(listSearchName.get(j));
-            }
-        }
-        for (int k = 0; k < listSearchNameSong.size(); k++) {
-            last.add(listSearchNameSong.get(k));
-        }
-
-        List<Singer> singer2 = singerService.findByNameContainingIgnoreCase(inputSearch);
-        System.out.println("singer2 = " + singer2.size());
+        List<Song> listSearchNameSong = songService.findByNameContainingIgnoreCase(inputSearch);
 
         List<Album> album = albumService.findByNameContainingIgnoreCase(inputSearch);
-        mav.addObject("album", album);
+
+        ArrayList<Song> all = new ArrayList<>();
+        all.addAll(listSearchNameSong);
+        for (int i = 0; i < singer.size(); i++) {
+            all.addAll(singer.get(i).getSongList());
+        }
+//        for (int i = 0; i < album.size(); i++) {
+//            all.addAll(album.get(i).getSongList());
+//        }
+        if(singer.size() == 0) {
+            messageNameSinger = "Không có ca sĩ nào";
+        } else if(all.size() == 0) {
+            messageAll = "Không có ca sĩ hay bài hát nào";
+        } else if(listSearchNameSong.size() == 0) {
+            messageNameSong = "Không có bài hát nào";
+        } else if(album.size() == 0) {
+            messageNameAllbum = "Không có Allbum nào";
+        }
+        mav.addObject("messageNameSinger", messageNameSinger);
+        mav.addObject("messageAll", messageAll);
+        mav.addObject("messageNameSong", messageNameSong);
+        mav.addObject("messageNameAllbum", messageNameAllbum);
         mav.addObject("inputSearch", inputSearch);
-        mav.addObject("listSearchName", last);
+        mav.addObject("all", all);
+        mav.addObject("album", album);
+        mav.addObject("singer", singer);
         mav.addObject("listSearchNameSong", listSearchNameSong);
-        mav.addObject("listSearchSinger", songs);
         return mav;
     }
 }

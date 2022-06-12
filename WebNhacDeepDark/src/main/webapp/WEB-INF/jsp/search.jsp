@@ -12,8 +12,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="text/css" href="/css/search.css" rel="stylesheet"/>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <%--    <link type="text/css" href="/bootstrap/boostrap_PhamVanHa/bootstrap.min.css" rel="stylesheet"/>--%>
+<%--    <link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet"/>--%>
+    <link type="text/css" rel="stylesheet" href="/bootstrap/boostrap_PhamVanHa/bootstrap.min.css"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
 
 <body>
 <jsp:include page="header.jsp"/>
-<div class="container-fluid">
+<div class="container-fluid" style="margin: 50px 0 50px 0">
     <div class="row">
         <div class="col-1">
         </div>
@@ -33,9 +33,9 @@
             <h3>Kết quả cho "${inputSearch}"</h3>
             <div class="underlined"></div>
             <div class="col-2" style="padding: 0px; float: left;">
-                <div class="btn-group-vertical" style="width: 100%">
-                    <button type="button active" data-toggle="tab" href="#All" class="btn" id="btn1"
-                            style="background-color: #ff5500;text-align: left;">Tất cả
+                <div class="btn-group-vertical nav" id="btn-group" style="width: 100%">
+                    <button type="button" data-toggle="tab" href="#All" class="btn active" id="btn1"
+                            style=";text-align: left;">Tất cả
                     </button>
                     <button type="button" data-toggle="tab" href="#menu1" class="btn" id="btn2"
                             style="; text-align: left;">Bài hát
@@ -52,10 +52,11 @@
             <div class="tab-content">
                 <div id="All" class="tab-pane fade in active">
                     <div class="col-8" style="float: left; margin-left: 40px; padding: 0px">
-                        <c:forEach var="list" items="${listSearchName}">
+                        <h3>${messageAll}</h3>
+                        <c:forEach var="list" items="${all}">
                             <%--                        <h1>${list.getAuthor().getName()}</h1>--%>
                             <div class="col-12" style="padding : 0px">
-                                <img src="${list.getLinkImage()}" class="img col-2">
+                                <img src="${list.linkImage}" class="img col-2">
                                 <div class="col-9">
                                     <div class="col-12">
                                         <img src="/img/Play.jpg" class="circle">
@@ -67,7 +68,7 @@
                                     <div class="col-12" id="bottom12">
                                         <button class="col-2" style="margin-left: 0px">
                                             <img src="/img/Heart.jpg">
-                                            <p style="float: left; text-align: left;">${list.getNumListen()}</p>
+                                            <p style="float: left; text-align: left;">${list.numListen}</p>
                                         </button>
                                         <button class="col-4">
                                             <img src="/img/Add.png">
@@ -87,21 +88,21 @@
                 <div id="menu1" class="tab-pane fade">
                     <div class="col-8" style="float: left; margin-left: 40px; padding: 0px">
                         <c:forEach var="list" items="${listSearchNameSong}">
-                            <%--                        <h1>${list.getAuthor().getName()}</h1>--%>
                             <div class="col-12" style="padding : 0px">
-                                <img src="${list.getLinkImage()}" class="img col-2">
+                                <img src="${list.linkImage}" class="img col-2">
                                 <div class="col-9">
+                                    <h3>${messageNameSong}</h3>
                                     <div class="col-12">
                                         <img src="/img/Play.jpg" class="circle">
                                         <div class="title-Song col-10">
-                                            <p class="nameSong">${list.getName()}</p>
-                                            <p class="nameSinger">${list.getSinger().getName()}</p>
+                                            <p class="nameSong">${list.name}</p>
+                                            <p class="nameSinger">${list.singer.name}</p>
                                         </div>
                                     </div>
                                     <div class="col-12" id="bottom12">
                                         <button class="col-2" style="margin-left: 0px">
                                             <img src="/img/Heart.jpg">
-                                            <p style="float: left; text-align: left;">${list.getNumListen()}</p>
+                                            <p style="float: left; text-align: left;">${list.numListen}</p>
                                         </button>
                                         <button class="col-4">
                                             <img src="/img/Add.png">
@@ -147,22 +148,24 @@
                     <%--                    </div>--%>
 
                     <div class="col-8" style="float: left; margin-left: 40px; padding: 0px">
-                        <c:forEach var="list" items="${listSearchSinger}">
+                        <h3>${messageNameSinger}</h3>
+                        <c:forEach var="list" items="${singer}">
+                            <c:forEach var="listSongBySinger" items="${list.songList}">
                             <%--                        <h1>${list.getAuthor().getName()}</h1>--%>
                             <div class="col-12" style="padding : 0px">
-                                <img src="${list.getLinkImage()}" class="img col-2">
+                                <img src="${listSongBySinger.linkImage}" class="img col-2">
                                 <div class="col-9">
                                     <div class="col-12">
                                         <img src="/img/Play.jpg" class="circle">
                                         <div class="title-Song col-10">
-                                            <p class="nameSong">${list.getName()}</p>
-                                            <p class="nameSinger">${list.getSinger().getName()}</p>
+                                            <p class="nameSong">${listSongBySinger.name}</p>
+                                            <p class="nameSinger">${listSongBySinger.singer.name}</p>
                                         </div>
                                     </div>
                                     <div class="col-12" id="bottom12">
                                         <button class="col-2" style="margin-left: 0px">
                                             <img src="/img/Heart.jpg">
-                                            <p style="float: left; text-align: left;">${list.getNumListen()}</p>
+                                            <p style="float: left; text-align: left;">${listSongBySinger.numListen}</p>
                                         </button>
                                         <button class="col-4">
                                             <img src="/img/Add.png">
@@ -176,13 +179,15 @@
                                 </div>
                                 <div class="underlined" style="float: left; margin-top: 20px"></div>
                             </div>
+                            </c:forEach>
                         </c:forEach>
                     </div>
                 </div>
                 <div id="Allbums" class="tab-pane fade">
+                    <h3>${messageNameAllbum}</h3>
                     <div class="col-8" style="float: left; margin-left: 40px; padding: 0px">
                         <c:forEach var="list" items="${album}">
-                        <div class="col-12" style="padding : 0px">
+                        <div class="col-12" style="padding : 0px;margin-top: 30px">
                             <img src="/img/Chilles.jpg" class="img col-2">
                             <div class="col-9">
                                 <div class="col-12">
@@ -193,14 +198,14 @@
                                     </div>
                                 </div>
                                 <div id="smallSup">
-                                    <div class="col-12 small" style="margin-top: 15px;">
-                                        <img class="smallImage" src="">
+                                    <c:forEach varStatus="loop" var="songAlbum" items="${list.songList}">
+                                    <a href="#"><div class="col-12 small" style="margin-top: 25px;">
+                                        <img class="smallImage" src="${songAlbum.linkImage}" style="margin-right: 8px">
                                         <div class="smallTitle">
-                                            <c:forEach varStatus="loop" var="songAlbum" items="${list.songList}">
                                             <p>${loop.index + 1} - ${songAlbum.name} | ${songAlbum.singer.name}</p>
-                                            </c:forEach>
                                         </div>
-                                    </div>
+                                    </div></a>
+                                    </c:forEach>
                                 </div>
 
                                 <div class="col-12" id="bottom122">
@@ -224,6 +229,7 @@
         </div>
     </div>
 </div>
+<script src="/js/searh-contact/searchTabPane.js"></script>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

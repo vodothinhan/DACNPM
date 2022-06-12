@@ -55,7 +55,7 @@
                         <ul class="main-nav nav navbar-nav" style="margin-left: 30px;">
                             <li class="dropdown">
                                 <a href="#">
-                                    <img style="cursor:pointer; border-radius: 100%;" src="./img/banner0.jpg" alt="Big" width="40" height="40">
+                                    <img style="cursor:pointer; border-radius: 100%;" src="/img/banner0.jpg" alt="Big" width="40" height="40">
                                     <span><strong> Tài khoản </strong>↴ </span>
                                     <i class="bi bi-chevron-down"></i>
                                 </a>

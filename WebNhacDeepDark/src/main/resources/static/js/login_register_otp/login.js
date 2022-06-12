@@ -56,5 +56,4 @@ function checkPass(){
     pass.classList.contains('is-valid') && pass.classList.remove('is-valid')
     pass.classList.add('is-invalid')
     return
-
 }

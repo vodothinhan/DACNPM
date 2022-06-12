@@ -28,15 +28,14 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(ModelMap model
             , @RequestParam(value = "email" , required = false) String email,
-                              @RequestParam(value = "pass",required = false) String pass,
+                              @RequestParam(value = "pass",required = false) String pass ,
                               HttpSession session){
 
         if(!userService.login(email,pass)){
             model.addAttribute("login",false);
             return new ModelAndView("login",model);
         }
-        session.setAttribute("user" , userService.findByEmail(email
-        ));
-        return new ModelAndView("login", model);
+        session.setAttribute("user",userService.findByEmail(email));
+        return new ModelAndView("redirect:/main", model);
     }
 }

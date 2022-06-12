@@ -35,7 +35,7 @@ public class Home {
         List<Song> top4newSong = songService.find4NewSong();
         mav.addObject("top10", top10);
         mav.addObject("top4newSong", top4newSong);
-
+        //test
 
         return mav;
     }
@@ -46,20 +46,6 @@ public class Home {
         mav.addObject("email", email);
         return mav;
 
-    }
-
-    @RequestMapping(path = "/search")
-    public ModelAndView search(@RequestParam(name = "inputSearch") String inputSearch) {
-        ModelAndView mav = new ModelAndView("search");
-        List<Song> listSearchName = new ArrayList<Song>();
-        List<Author> author = authorService.findByNameContaining(inputSearch);
-        System.out.println("author = " + author);
-        ArrayList<Song> listByNameAuthor = new ArrayList<>();
-        for (int i = 0; i < author.size(); i++) {
-            listSearchName = songService.findByAuthor(author.get(i),listByNameAuthor);
-        }
-        mav.addObject("listSearchName", listSearchName);
-        return mav;
     }
 
     public String test2() {

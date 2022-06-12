@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -25,13 +27,15 @@ public class LoginController {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(ModelMap model
-            ,@RequestParam(value = "email" , required = false) String email,
-              @RequestParam(value = "pass",required = false) String pass){
+            , @RequestParam(value = "email" , required = false) String email,
+                              @RequestParam(value = "pass",required = false) String pass ,
+                              HttpSession session){
 
         if(!userService.login(email,pass)){
             model.addAttribute("login",false);
             return new ModelAndView("login",model);
         }
+        session.setAttribute("user",userService.findByEmail(email));
         return new ModelAndView("redirect:/main", model);
     }
 }

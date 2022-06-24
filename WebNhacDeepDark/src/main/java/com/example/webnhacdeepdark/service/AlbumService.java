@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlbumService {
@@ -27,5 +28,17 @@ public class AlbumService {
         return albumRepositories.save(album);
     }
     public List<Album> findByNameContainingIgnoreCase(String name) {
-        return albumRepositories.findByNameContainingIgnoreCase(name);};
+        return albumRepositories.findByNameContainingIgnoreCase(name);}
+
+    public List<Album> findByNameAuthor(String name){
+        return albumRepositories.findByNameContainingIgnoreCase(name);
+    }
+    public boolean isExistAlbum(String name){
+        return albumRepositories.findByName(name).size()==0 ;
+    }
+    public Optional<Album> findAlbumById(String strId){
+        int id = Integer.parseInt(strId) ;
+        return  albumRepositories.findById(id) ;
+    }
+
 }

@@ -19,17 +19,16 @@ public class LoginController {
     @RequestMapping(value = {"" , "/login"} , method = RequestMethod.GET)
     public ModelAndView loginPage(ModelMap model ,
            @RequestParam(value = "register" ,required = false) boolean register,
-            @RequestParam(value = "resetPass", required = false) boolean resetPass){
+            @RequestParam(value = "resetPass",required = false) boolean resetPass){
         model.addAttribute("register", register);
         model.addAttribute("resetPass", resetPass);
-
         return new ModelAndView("login" , model);
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(ModelMap model
             , @RequestParam(value = "email" , required = false) String email,
-                              @RequestParam(value = "pass",required = false) String pass ,
-                              HttpSession session){
+             @RequestParam(value = "pass",required = false) String pass ,
+               HttpSession session){
 
         if(!userService.login(email,pass)){
             model.addAttribute("login",false);

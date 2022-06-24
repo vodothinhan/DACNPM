@@ -17,7 +17,8 @@ public class Album {
     private String name;
     //@Column(name = "date_released")
     private Date dateReleased;
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 

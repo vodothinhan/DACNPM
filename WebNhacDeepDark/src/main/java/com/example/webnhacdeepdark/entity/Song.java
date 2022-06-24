@@ -1,12 +1,13 @@
 package com.example.webnhacdeepdark.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
 @Entity
 //@Table(name = "song")
-public class Song {
+public class Song implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_song")
@@ -23,19 +24,19 @@ public class Song {
     //@Column(name = "num_listen")
     private int numListen;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "playlist_id", referencedColumnName = "id")
     private PlayList playList;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     private Album album;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "singer_id", referencedColumnName = "id")
     private Singer singer;
 

@@ -3,13 +3,14 @@ package com.example.webnhacdeepdark.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 //@Table(name = "album")
-public class Album {
+public class Album implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_album")
@@ -17,8 +18,7 @@ public class Album {
     private String name;
     //@Column(name = "date_released")
     private Date dateReleased;
-//    @ManyToOne(cascade = CascadeType.ALL)
-    @ManyToOne
+   @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 

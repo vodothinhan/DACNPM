@@ -14,6 +14,8 @@ public class MusicPlay {
     public ModelAndView toMusicPlayPage(){
         ModelAndView mav = new ModelAndView("music_play");
         List<String> list = new ArrayList<>();
+        list.add("13");
+        list.add("1");
         list.add("Evan2");
         mav.addObject("playlist", list);
         return mav;

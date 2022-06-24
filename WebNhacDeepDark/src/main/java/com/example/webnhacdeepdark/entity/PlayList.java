@@ -17,7 +17,8 @@ public class PlayList {
     @OneToMany(mappedBy = "playList")
     private List<Song> listSongs = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users users;
 

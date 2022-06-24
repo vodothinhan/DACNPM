@@ -9,4 +9,8 @@ import java.util.List;
 
 public interface AlbumRepositories extends JpaRepository<Album, Integer> {
     List<Album> findByNameContainingIgnoreCase(String nameSong);
+
+    public List<Album> findByName(String name) ;
+
+
 }

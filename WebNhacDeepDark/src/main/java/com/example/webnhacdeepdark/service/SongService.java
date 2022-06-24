@@ -7,6 +7,7 @@ import com.example.webnhacdeepdark.entity.Song;
 import com.example.webnhacdeepdark.repositories.SongRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,4 +108,8 @@ public class SongService {
 //        }
 //        return listByNameSinger;
 //    }
+    @Transactional
+    public Song saveSongOfFormMusic(Song song){
+       return songRepositories.save(song) ;
+    }
 }

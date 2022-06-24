@@ -34,7 +34,8 @@ public class LoginController {
             model.addAttribute("login",false);
             return new ModelAndView("login",model);
         }
-        session.setAttribute("user",userService.findByEmail(email));
+        session.setAttribute("user",userService.findByEmail(email)); //<---
+
         return new ModelAndView("redirect:/main", model);
     }
 }

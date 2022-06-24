@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.service;
 
+import com.example.webnhacdeepdark.controller.User;
 import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.model.UserModel;
 import com.example.webnhacdeepdark.repositories.UserRepositories;
@@ -7,6 +8,8 @@ import com.example.webnhacdeepdark.utilities.ConvertUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -27,6 +30,8 @@ public class UserService {
     public void deleteUser(int id) {
         userRepositories.deleteById(id);
     }
+
+    public List<Users> findAll() { return userRepositories.findAll(); }
 
     public Users findByEmail(String email) {
         return userRepositories.findFirstByEmail(email);
@@ -90,5 +95,7 @@ public class UserService {
         this.user.setPassword(pass);
         userRepositories.save(user);
     }
+
+
 
 }

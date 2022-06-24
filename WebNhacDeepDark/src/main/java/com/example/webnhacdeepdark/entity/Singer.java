@@ -3,12 +3,13 @@ package com.example.webnhacdeepdark.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 //@Table(name = "singer")
-public class Singer {
+public class Singer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_singer")

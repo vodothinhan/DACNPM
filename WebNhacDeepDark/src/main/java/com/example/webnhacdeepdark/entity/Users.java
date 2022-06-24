@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 //@Table(name = "users")
-public class Users {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_user", nullable = false)

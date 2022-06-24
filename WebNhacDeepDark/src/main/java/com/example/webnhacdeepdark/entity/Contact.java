@@ -1,11 +1,12 @@
 package com.example.webnhacdeepdark.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 //@Table(name = "contact")
-public class Contact {
+public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "id_contact")

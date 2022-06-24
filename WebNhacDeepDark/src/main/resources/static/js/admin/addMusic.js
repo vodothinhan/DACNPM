@@ -8,7 +8,7 @@ const  NOT_NULL = "Trường này không được trống !"
 const FILE_OVER_SIZE = "Kích thước file quá lớn !"
 const FILE_EXTENSION_THUMBNAIL = "Kiểu file phải là file ảnh (png , jpg ,....) !"
 const FILE_EXTENSION_MUSIC  ="Kiểu file phải là file music (mp3 , mp4 ) !"
-const MAX_SIZE = 5*1024*1024
+const MAX_SIZE = 500*1024*1024
 const NOT_EXIST = " Bạn cần phải thêm album mới!"
 var inputNameSinger = document.querySelector(".nameSinger")
 var inputNameAuthor = document.querySelector(".nameAuthor")
@@ -27,16 +27,16 @@ var hiddenSinger = document.querySelector('.hidden-singer')
 var hiddenAuthor = document.querySelector('.hidden-author')
 var hiddenAlbum = document.querySelector('.hidden-album')
 var hiddenAuthorOfAlbum = document.querySelector('.hidden-of-album')
+var selectTypesong = document.querySelector('.select-type-song')
 
 btnAddNewAlbumOfAlbum.addEventListener('click' , (event) =>{
     event.preventDefault()
 
-    if(checkValueInput(inputNameOfAlbum,NOT_NULL)){
+    if(checkAllPrevUpload(document.querySelectorAll('.form-of-album'))){
         removeClassCSS(formAlbum , 'd-block')
         addClassCss(formAlbum,'d-none')
         removeClassCSS(formMusic, 'd-none')
         addClassCss(formMusic, 'd-block')
-
         inputNameAlbum.value = inputNameOfAlbum.value
     }
 })
@@ -44,6 +44,7 @@ btnAddNewAlbumOfAlbum.addEventListener('click' , (event) =>{
 btnAddNewAlbum.addEventListener('click', (event) => {
     event.preventDefault()
     inputNameAlbum.value =''
+    inputCurrent=null
     removeClassCSS(formMusic, 'd-block')
     addClassCss(formMusic, 'd-none')
     removeClassCSS(formAlbum, 'd-none')
@@ -73,19 +74,17 @@ btnCancelNewmAlbum.addEventListener('click', (event) => {
 })
 btnUpload.addEventListener('click' ,   (event) =>{
     event.preventDefault()
-    uploadFile()
     inputCurrent = null
-    if(!checkAllPrevUpload(document.querySelectorAll(".form-music-input"))){
+    if(!checkAllPrevUpload(document.querySelectorAll(".form-music-input")) | !checkTypeSong()){
         return
     }
 
     let str1 = hiddenAlbum.value.trim().length===0?false:true
     let str2 =  inputNameAuthorOfAlbum.value.trim().length===0?false:true
     if(str2||str1){
-
+        uploadFile()
     }
     else {
-
         let  err = document.querySelector(".err-album")
         err.innerHTML=NOT_EXIST
         inputNameAlbum.classList.contains('is-valid')&&inputNameAlbum.classList.remove('is-valid')
@@ -222,7 +221,7 @@ inputNameAlbum.addEventListener('input' , () =>{
             let  data =  await fetchDataFromServer(`/findNameAlbum?name=${name}`)
             if(Array.isArray(data.data.data)){
                 UIWithData(data ,document.querySelector(".displayAlbum"))
-            } else document.querySelector(".displayAlbum").innerHTML = NOT_RESULT
+            }
 
         },TIME_REQUEST)
     }
@@ -339,17 +338,76 @@ function renderUILoading(dom){
         </div>
       </div>`
 }
+function  checkTypeSong(){
+    if(selectTypesong.value.length===0){
+        selectTypesong.classList.contains('is-valid') && selectTypesong.classList.remove('is-valid')
+        selectTypesong.classList.add('is-invalid')
+        return false
+    }
+    selectTypesong.classList.contains('is-invalid') && selectTypesong.classList.remove('is-invalid')
+    selectTypesong.classList.add('is-valid')
+    return  true
+}
 
-function  uploadFile() {
+  function  uploadFile() {
     let form = document.querySelector('.form-upload')
     let formData = new FormData(form)
+    let progress =  document.querySelector('.progress-bar')
+      let progressBar =  document.querySelector('.progress')
+      removeClassCSS(progressBar,'d-none')
+      addClassCss(progressBar,'d-block')
+      progress.innerHTML = "0%"
+      progress.setAttribute("aria-valuenow", 0);
+      progress.style.width = "0%";
+      const  onUploadProgress = (event) =>{
+        const percentage = Math.round(((100*event.loaded)/event.total)-1)
+         progress.setAttribute('aria-valuenow' , percentage)
+          progress.innerHTML = percentage + "%"
+          progress.style.width = percentage + "%";
+      }
     axios({
         method: "post",
         url: "/addMusic",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-    }).then(res => console.log(res.data))
-      .catch(err => console.log(err))
+        onUploadProgress
+    }).then(res => {
+        let alterSucess = document.querySelector('.alert-success')
+        removeClassCSS(progressBar , 'd-block')
+        addClassCss(progressBar,'d-none')
+        removeClassCSS(alterSucess , 'd-none')
+        addClassCss(alterSucess,'d-block')
+        resetForm()
+        setTimeout(() =>{
+            removeClassCSS(alterSucess , 'd-blobk')
+            addClassCss(alterSucess,'d-none')
+        } , 10000)
+        console.log(res.data)
+        }
+    )
+      .catch(err =>{
+          let alterDanger = document.querySelector('.alert-danger')
+          removeClassCSS(alterDanger , 'd-none')
+          addClassCss(alterDanger,'d-block')
+          setTimeout(() =>{
+              removeClassCSS(alterDanger , 'd-blobk')
+              addClassCss(alterDanger,'d-none')
+          },10000)
+          console.log(err)
+      })
+}
+
+function resetForm(){
+    document.querySelector('.form-upload').reset()
+    let errs = document.querySelectorAll('.form-control')
+    errs.forEach(err =>{
+        err.classList.remove('is-valid')
+        err.classList.remove('is-invalid')
+    })
+    selectTypesong.classList.remove('is-valid')
+    selectTypesong.classList.remove('is-invalid')
+    inputCurrent=null
+
 }
 
 

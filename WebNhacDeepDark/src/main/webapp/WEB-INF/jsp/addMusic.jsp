@@ -101,8 +101,14 @@
             <form class="form-upload shadow-sm rounded-3 novalidate">
                 <div class="form-music">
                     <div class="progress d-none">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
                              aria-valuemin="0" aria-valuemax="100">25%</div>
+                    </div>
+                    <div class="alert alert-success d-none" role="alert">
+                       Thêm bài hát thành công
+                    </div>
+                    <div class="alert alert-danger d-none" role="alert">
+                        Thêm bài hát không thành công
                     </div>
                     <div class="mb-2">
                         <label for="validationServer01" class="form-label">Tên bài hát</label>
@@ -178,14 +184,14 @@
 
                     <div class="mb-2">
                         <label for="validationServer04" class="form-label">Thể loại</label>
-                        <select name="typeSong" class="form-select form-select-sm " id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                        <select name="typeSong" class="form-select form-select-sm select-type-song" id="validationServer04" aria-describedby="validationServer04Feedback" required>
                             <option selected disabled value="">Choose...</option>
                             <c:forEach var="item" items="${listType}">
                                 <option value="${item}">${item}</option>
                             </c:forEach>
 
                         </select>
-                        <div id="validationServer04Feedback" class="invalid-feedback">
+                        <div id="validationServer04Feedback" class="invalid-feedback err-type-song">
                             Vui lòng chọn thể loại nhạc !
                         </div>
                     </div>
@@ -204,7 +210,7 @@
 
                     <div>
                         <button class="btn btn-success me-4 btn-upload" type="submit">Thêm bài hát</button>
-                        <button class="btn btn-danger" type="submit">Reset form</button>
+                        <button class="btn btn-danger" type="submit">Hủy bỏ</button>
 
                     </div>
 
@@ -214,8 +220,7 @@
                     <div class="mb-2">
                         <h1 class="display-6">Thêm Album mới</h1>
                         <label  class="form-label">Tên album</label>
-                        <input type="text" class="form-control form-control-sm input-value inputNameOfAlbum" name="nameNewAlbum" >
-                        <input class="hidden-of-album" type="hidden"/>
+                        <input type="text" class="form-control form-control-sm input-value inputNameOfAlbum form-of-album" name="nameNewAlbum" >
                         <div class="invalid-feedback">
 
                         </div>
@@ -223,7 +228,8 @@
                     </div>
                     <div class="mb-2 ">
                         <label class="form-label">Tên tác giả</label>
-                        <input type="text" class="form-control form-control-sm nameAuthorOfAlbum" name="nameAuthorNewAlbm">
+                        <input type="text" class="form-control form-control-sm nameAuthorOfAlbum form-of-album" name="nameAuthorNewAlbm">
+                        <input class="hidden-of-album" name="idAuthorOfNewAlbum" type="hidden"/>
                         <div class="dropdown">
                             <ul class="dropdown-menu  ps-2 display-form-author" style="overflow-y: auto; max-height: 200px;">
                                 <div class="d-flex justify-content-center">

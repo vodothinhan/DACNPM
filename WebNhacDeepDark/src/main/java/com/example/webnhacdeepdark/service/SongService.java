@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SongService {
@@ -112,4 +113,50 @@ public class SongService {
     public Song saveSongOfFormMusic(Song song){
        return songRepositories.save(song) ;
     }
+    public List<Song> getAllSong(){
+        return  songRepositories.findAll() ;
+    }
+
+    public void deleteSong(int id){
+        songRepositories.deleteById(id);
+    }
+    public Song  findSongById(int id) {
+        Song song = null ;
+        if(songRepositories.findById(id).isPresent()) song = songRepositories.findById(id).get() ;
+        else throw new RuntimeException("not found song") ;
+        return song ;
+    }
+    public void updateSong(Song song){
+       song.setSinger(null);
+       song.setAlbum(null);
+       song.setAuthor(null);
+       song.setPlayList(null);
+       songRepositories.save(song) ;
+    }
+    @Transactional
+    public boolean updateManySong(ArrayList<Integer> listIdSong){
+        try{
+            for (Integer id : listIdSong){
+                updateSong(findSongById(id));
+            }
+            return  true ;
+        } catch (Exception e){
+            return  false ;
+        }
+    }
+
+    @Transactional
+    public boolean deleteManySong(ArrayList<Integer> listIdSong){
+        try{
+           if(updateManySong(listIdSong)){
+              for (Integer id : listIdSong){
+                  deleteSong(id);
+              }
+           }
+            return true ;
+        }catch (Exception e){
+            return  false ;
+        }
+    }
+
 }

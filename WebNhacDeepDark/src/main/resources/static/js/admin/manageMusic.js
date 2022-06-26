@@ -85,7 +85,7 @@ $(document).ready(function () {
         checked ? $(this).parents('tr').addClass('selected') : $(this).parents('tr').removeClass('selected')
         countChecked()===0?$(".btn-danger").addClass("disabled"):$(".btn-danger").removeClass("disabled")
     })
-    $("#table-song .form-switch").on("click" , "input:checked" , function (){
+    $("#table-song .form-switch").on("click" , "input[type=checkbox]" , function (){
         let  id = $(this).val()
         let check = $(this)
         Swal.fire({

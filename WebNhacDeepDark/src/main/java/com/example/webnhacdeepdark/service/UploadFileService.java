@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.service;
 
+import org.apache.tomcat.jni.File;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +30,42 @@ public class UploadFileService {
         } catch(Exception e){
             return  false ;
         }
+    }
+    public void deleteFileMusic(int idSong){
+        String pathMp3 = "src\\main\\resources\\static\\mp3\\" ;
+        String pathMp4 = "src\\main\\resources\\static\\mp3\\" ;
+       try{
+           if(Files.exists(Paths.get(pathMp3+idSong+".mp3"))){
+               Files.delete(Paths.get(pathMp3+idSong+".mp3"));
+               return;
+           }
+           if(Files.exists(Paths.get(pathMp4+idSong+".mp4"))){
+               Files.delete(Paths.get(pathMp4+idSong+".mp4"));
+               return;
+           }
+
+       } catch (Exception e){
+           return;
+       }
+
+    }
+    public void deleFileThumbnail(int idsong){
+        String pathThumbnailJpeg = "src\\main\\resources\\static\\thumbnail\\"+idsong+".jpeg" ;
+        String pathThumbnailPng = "src\\main\\resources\\static\\thumbnail\\"+idsong+".png" ;
+        try{
+            if(Files.exists(Paths.get(pathThumbnailJpeg))) {
+                Files.delete(Paths.get(pathThumbnailJpeg));
+                return;
+            }
+            if(Files.exists(Paths.get(pathThumbnailPng))) {
+                Files.delete(Paths.get(pathThumbnailPng));
+                return;
+            }
+        } catch (Exception e){
+
+            return;
+        }
+
     }
    public  String getExtensionFile(MultipartFile file){
         String fileName = file.getOriginalFilename() ;

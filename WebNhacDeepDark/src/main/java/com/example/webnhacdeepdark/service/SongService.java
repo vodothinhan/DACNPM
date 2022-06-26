@@ -158,5 +158,20 @@ public class SongService {
             return  false ;
         }
     }
+    @Transactional
+    public Song updateStatusSong(int idSong){
+        Song song = findSongById(idSong) ;
+        if(song==null) throw  new RuntimeException("not found song") ;
+        String status = song.getStatus() ;
+       if(status!=null){
+           if(status.equals("ACTIVE")) song.setStatus("BLOCK");
+           else song.setStatus("ACTIVE");
+       }
+       else song.setStatus("ACTIVE");
+
+        return songRepositories.save(song) ;
+
+    }
+
 
 }

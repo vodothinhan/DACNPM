@@ -117,6 +117,7 @@
 
         </div>
         <div class="header-manage">
+            <a href="/admin/add-music" class="d-none direct-page-add-music"></a>
             <h3>Quản lí bài hát</h3>
         </div>
         <div class="container-table">
@@ -159,7 +160,7 @@
                            <td>${song.singer.name}</td>
                            <td>
                                <div class="form-check form-switch">
-                                   <input class="form-check-input" type="checkbox"  ${song.status=="ACTIVE"?"checked":""}>
+                                   <input class="form-check-input" type="checkbox" value="${song.id}"  ${song.status=="ACTIVE"?"checked":""}>
                                </div>
                            </td>
                            <td><i class="fa-solid fa-pen-to-square"></i></td>

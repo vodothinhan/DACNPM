@@ -210,7 +210,7 @@
 
                     <div>
                         <button class="btn btn-success me-4 btn-upload" type="submit">Thêm bài hát</button>
-                        <button class="btn btn-danger" type="submit">Hủy bỏ</button>
+                        <a href="/admin/manage-song" class="btn btn-danger" tabindex="-1" role="button" >Hủy bỏ</a>
 
                     </div>
 

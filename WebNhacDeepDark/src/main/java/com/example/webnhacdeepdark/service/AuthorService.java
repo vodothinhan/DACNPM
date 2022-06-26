@@ -4,7 +4,9 @@ import com.example.webnhacdeepdark.entity.Author;
 import com.example.webnhacdeepdark.repositories.AuthorRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +34,20 @@ public class AuthorService {
     public Optional<Author> findAuthorById(String strId){
         int id = Integer.parseInt(strId) ;
         return authorRepositories.findById(id) ;
+    }
+
+    public void deleteAuthor(int id){
+        authorRepositories.deleteAuthorById(id);
+    }
+    @Transactional
+    public boolean deleteManyAuthor(ArrayList<Integer> listIdAuthor){
+        try{
+            for (Integer id : listIdAuthor){
+                deleteAuthor(id);
+            }
+            return true ;
+        }catch (Exception e){
+            return  false ;
+        }
     }
 }

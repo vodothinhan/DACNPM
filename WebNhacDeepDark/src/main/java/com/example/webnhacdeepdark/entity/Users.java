@@ -1,6 +1,7 @@
 package com.example.webnhacdeepdark.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
@@ -31,10 +32,12 @@ public class Users implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "users")
+    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,org.hibernate.annotations.CascadeType.DELETE})
     private List<PlayList> playLists = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
+    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,org.hibernate.annotations.CascadeType.DELETE})
     private List<Contact> contacts = new ArrayList<>();
 
     public Users(String email, String password, String role, String status,

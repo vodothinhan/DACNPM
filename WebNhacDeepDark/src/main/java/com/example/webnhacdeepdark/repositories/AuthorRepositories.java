@@ -9,4 +9,6 @@ import java.util.List;
 public interface AuthorRepositories extends JpaRepository<Author, Integer> {
     List<Author> findByNameContaining(String name);
     List<Author> findByNameContainingIgnoreCase(String name) ;
+
+    public void deleteAuthorById(int id);
 }

@@ -96,7 +96,7 @@ function checkRepeat(){
         return
     }
 
-    if(passValue.length>8){
+    if(passValue.length>=8){
         if(passValue!==repeatValue) {
             isRepeat = false
             errRepeat.innerHTML = " Trường này không trùng khớp!"

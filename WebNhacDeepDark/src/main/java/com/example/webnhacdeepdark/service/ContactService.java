@@ -11,4 +11,10 @@ public class ContactService {
     ContactRepositories contactRepositories;
 
     public void save(Contact contact) {contactRepositories.save(contact);};
+
+    public void delete(Contact contact) {contactRepositories.delete(contact);};
+
+    public Contact findByUsersId(int userId) {
+        return contactRepositories.findByUsersId(userId);
+    }
 }

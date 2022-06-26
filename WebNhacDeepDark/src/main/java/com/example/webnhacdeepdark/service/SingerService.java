@@ -4,7 +4,9 @@ import com.example.webnhacdeepdark.entity.Singer;
 import com.example.webnhacdeepdark.repositories.SingerRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +37,20 @@ public class SingerService {
         return singerRepositories.findById(id) ;
     }
 
+    public void deleteSinger(int id){
+        singerRepositories.deleteSingerById(id);
+    }
+    @Transactional
+    public boolean deleteManySinger(ArrayList<Integer> listIdSinger){
+        try{
+                for (Integer id : listIdSinger){
+                    deleteSinger(id);
+                }
+            return true ;
+        }catch (Exception e){
+            return  false ;
+        }
+    }
 
 
 }

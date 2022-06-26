@@ -15,6 +15,7 @@ public class RestAPI {
         return userService.findById(id);
     }
 
+
     @PostMapping("/insertUser")
     public String insertUser(@RequestBody Users user){
         userService.saveUser(user);

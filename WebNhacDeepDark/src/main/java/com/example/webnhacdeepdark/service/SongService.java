@@ -133,6 +133,12 @@ public class SongService {
        song.setPlayList(null);
        songRepositories.save(song) ;
     }
+
+    public void setPlaylistNull(Song song){
+        song.setPlayList(null);
+        songRepositories.save(song);
+    }
+
     @Transactional
     public boolean updateManySong(ArrayList<Integer> listIdSong){
         try{

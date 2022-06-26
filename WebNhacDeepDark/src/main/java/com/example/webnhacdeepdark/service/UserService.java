@@ -1,6 +1,9 @@
 package com.example.webnhacdeepdark.service;
 
 import com.example.webnhacdeepdark.controller.User;
+import com.example.webnhacdeepdark.entity.Contact;
+import com.example.webnhacdeepdark.entity.PlayList;
+import com.example.webnhacdeepdark.entity.Song;
 import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.model.UserModel;
 import com.example.webnhacdeepdark.repositories.UserRepositories;
@@ -9,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,6 +24,11 @@ public class UserService {
     @Autowired
     ConvertUser convertUser;
 
+    @Autowired
+    PlaylistService playlistService;
+
+    @Autowired
+    ContactService contactService;
     public Users findById(int id) {
         return userRepositories.findById(id).get();
     }
@@ -94,6 +104,52 @@ public class UserService {
     public void updatePass(String pass) {
         this.user.setPassword(pass);
         userRepositories.save(user);
+    }
+
+
+    public Users findUserById(int id) {
+        Users users = null ;
+        if(userRepositories.findById(id).isPresent()) users = userRepositories.findById(id).get() ;
+        else throw new RuntimeException("not found user") ;
+        return users ;
+    }
+
+    @Transactional
+    public void updateUser(Users user){
+        for (Contact contact : user.getContacts()){
+            if(contact!=null){
+            contactService.delete(contact);}
+        }
+        for (PlayList playList : user.getPlayLists()){
+            if(playList!=null){
+            playlistService.deletePlaylist(playList);}
+        }
+        userRepositories.save(user) ;
+    }
+
+    @Transactional
+    public boolean updateManyUser(ArrayList<Integer> listIdUser){
+        try{
+            for (Integer id : listIdUser){
+                updateUser(findUserById(id));
+            }
+            return  true ;
+        } catch (Exception e){
+            return  false ;
+        }
+    }
+    @Transactional
+    public boolean deleteManyUser(ArrayList<Integer> listIdUser){
+        try{
+            if(updateManyUser(listIdUser)){
+                for (Integer id : listIdUser){
+                    deleteUser(id);
+                }
+            }
+            return true ;
+        }catch (Exception e){
+            return  false ;
+        }
     }
 
 

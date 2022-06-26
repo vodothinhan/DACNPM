@@ -159,7 +159,7 @@
                             <td>${user.timeRecovery}</td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox"  ${user.status=="ACTIVE"?"checked":""}>
+                                    <input class="form-check-input" type="checkbox" value="${user.id}" ${user.status=="ACTIVE"?"checked":""}>
                                 </div>
                             </td>
                             <td><i class="fa-solid fa-pen-to-square"></i></td>

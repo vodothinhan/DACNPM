@@ -79,8 +79,17 @@ $(document).ready(function () {
             {
                 text: 'Thêm nghệ sĩ',
                 className : 'btn btn-success btn-sm ms-4',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
+                action: async function (e, dt, node, config) {
+                    const {value: email} = await Swal.fire({
+                        title: 'Nhập tên ',
+                        input: 'email',
+                        inputLabel: 'Your email address',
+                        inputPlaceholder: 'Enter your email address'
+                    })
+
+                    if (email) {
+                        Swal.fire(`Entered email: ${email}`)
+                    }
                 }
             }
         ]

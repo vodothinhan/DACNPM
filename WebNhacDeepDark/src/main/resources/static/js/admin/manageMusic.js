@@ -85,9 +85,10 @@ $(document).ready(function () {
         checked ? $(this).parents('tr').addClass('selected') : $(this).parents('tr').removeClass('selected')
         countChecked()===0?$(".btn-danger").addClass("disabled"):$(".btn-danger").removeClass("disabled")
     })
-    $("#table-song .form-switch").on("click" , "input:checked" , function (){
+    $("#table-song .form-switch").on("click" , "input[type=checkbox]" , function (){
         let  id = $(this).val()
         let check = $(this)
+        check.prop("checked" , !check.prop("checked"))
         Swal.fire({
             title: 'Bạn có chắc chắn thay đổi',
             text: "Trạng thái của bài hát này",
@@ -106,6 +107,7 @@ $(document).ready(function () {
                 })
                     .then(response => {
                         if (!response.ok) {
+
                             throw new Error(response.statusText)
                         }
                         return response.json()
@@ -125,7 +127,9 @@ $(document).ready(function () {
                         'Bạn đã thay đổi trạng thái thành công',
                         'success'
                     )
-                    check.attr("checked" , true)
+                    if(result.value.data.status==="ACTIVE"){
+                        check.prop('checked' , true)
+                    }else  check.prop('checked' , false)
                 }
 
             }

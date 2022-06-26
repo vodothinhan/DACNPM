@@ -24,4 +24,12 @@ public class ManageUserAPI {
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ObjectResponse("", ""));
     }
+
+    @RequestMapping(value = "/update-status-user")
+    public ResponseEntity<ObjectResponse> updateStatusSong(@RequestBody int idUser){
+        return  ResponseEntity.status(HttpStatus.OK).body(
+                new ObjectResponse("oke" , service.updateStatusUser(idUser))
+        ) ;
+
+    }
 }

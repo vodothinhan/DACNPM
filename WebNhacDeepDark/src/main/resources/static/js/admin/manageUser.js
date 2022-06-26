@@ -76,13 +76,6 @@ $(document).ready(function () {
                     })
 
                 }
-            },
-            {
-                text: 'Thêm tài khoản',
-                className : 'btn btn-success btn-sm ms-4',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
-                }
             }
         ]
     });
@@ -97,4 +90,51 @@ $(document).ready(function () {
         countChecked()===0?$(".btn-danger").addClass("disabled"):$(".btn-danger").removeClass("disabled")
     })
 
+    $("#table-user .form-switch").on("click" , "input[type=checkbox]" , function (){
+        let  id = $(this).val()
+        let check = $(this)
+        Swal.fire({
+            title: 'Bạn có chắc chắn thay đổi',
+            text: "Trạng thái của tài khoản này",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            showLoaderOnConfirm: true,
+            confirmButtonText: 'Thay đổi',preConfirm: () => {
+                return fetch("/update-status-user",{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(id)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(
+                            "Thay đổi trạng thái không thành công !"
+                        )
+                    })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if(result.value.data){
+                    Swal.fire(
+                        'Thành công',
+                        'Bạn đã thay đổi trạng thái thành công',
+                        'success'
+                    )
+                    check.attr("checked" , true)
+                }
+
+            }
+        })
+
+    })
 });

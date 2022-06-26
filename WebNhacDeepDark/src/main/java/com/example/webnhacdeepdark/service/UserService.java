@@ -152,6 +152,21 @@ public class UserService {
         }
     }
 
+    @Transactional
+    public Users updateStatusUser(int idUser){
+        Users user = findUserById(idUser) ;
+        if(user==null) throw  new RuntimeException("not found user") ;
+        String status = user.getStatus() ;
+        if(status!=null){
+            if(status.equals("ACTIVE")) user.setStatus("BLOCK");
+            else user.setStatus("ACTIVE");
+        }
+        else user.setStatus("ACTIVE");
+
+        return userRepositories.save(user) ;
+
+    }
+
 
 
 }

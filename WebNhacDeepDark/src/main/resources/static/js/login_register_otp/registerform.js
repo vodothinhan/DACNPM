@@ -86,8 +86,8 @@ function checkEmail(){
 }
 
 function checkRepeat(){
-    let passValue = pass.value.trim()
-    let repeatValue = repeat.value.trim()
+    let passValue = document.querySelector(".input-pass").value.trim()
+    let repeatValue = document.querySelector(".repeat").value.trim()
     if(repeatValue.length===0) {
         isRepeat = false
         errRepeat.innerHTML = " Trường này không được trống!"
@@ -97,7 +97,7 @@ function checkRepeat(){
     }
 
     if(passValue.length>=8){
-        if(passValue!==repeatValue) {
+        if(!(passValue===repeatValue)) {
             isRepeat = false
             errRepeat.innerHTML = " Trường này không trùng khớp!"
             repeat.classList.contains('is-valid')&& repeat.classList.remove('is-valid')

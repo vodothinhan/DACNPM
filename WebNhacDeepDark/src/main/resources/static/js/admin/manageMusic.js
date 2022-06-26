@@ -67,7 +67,7 @@ $(document).ready(function () {
                 text: 'Thêm bài hát',
                 className : 'btn btn-success btn-sm ms-4',
                 action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
+                    $(".direct-page-add-music").trigger("click")
                 }
             }
         ]

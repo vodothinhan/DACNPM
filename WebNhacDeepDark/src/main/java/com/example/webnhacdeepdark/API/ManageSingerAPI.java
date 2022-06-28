@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.API;
 
+import com.example.webnhacdeepdark.entity.Singer;
 import com.example.webnhacdeepdark.model.ObjectResponse;
 import com.example.webnhacdeepdark.service.SingerService;
 import com.example.webnhacdeepdark.service.UserService;
@@ -18,10 +19,25 @@ public class ManageSingerAPI {
     @Autowired
     SingerService service ;
     @RequestMapping(value = "/deleteSinger" , method = RequestMethod.POST)
-    public ResponseEntity<ObjectResponse> deleteUser(@RequestBody ArrayList<Integer> listIdSinger) {
+    public ResponseEntity<ObjectResponse> deleteSinger(@RequestBody ArrayList<Integer> listIdSinger) {
         if (service.deleteManySinger(listIdSinger)) return ResponseEntity.status(HttpStatus.OK).body(
                 new ObjectResponse("oke", "TRUE")
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ObjectResponse("", ""));
     }
+
+    @RequestMapping(value = "/addSinger" , method = RequestMethod.POST)
+    public ResponseEntity<ObjectResponse> addSinger(@RequestBody String nameSinger) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ObjectResponse("oke",service.addSinger(nameSinger) )
+        );
+    }
+
+    @RequestMapping(value = "/updateSinger" , method = RequestMethod.POST)
+    public ResponseEntity<ObjectResponse> updateSinger(@RequestBody Singer singer) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ObjectResponse("oke", service.updateSinger(singer))
+        );
+    }
+
 }

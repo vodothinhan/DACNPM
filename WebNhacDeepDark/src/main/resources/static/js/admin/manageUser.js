@@ -93,6 +93,7 @@ $(document).ready(function () {
     $("#table-user .form-switch").on("click" , "input[type=checkbox]" , function (){
         let  id = $(this).val()
         let check = $(this)
+        check.prop("checked" , !check.prop("checked"))
         Swal.fire({
             title: 'Bạn có chắc chắn thay đổi',
             text: "Trạng thái của tài khoản này",
@@ -130,7 +131,9 @@ $(document).ready(function () {
                         'Bạn đã thay đổi trạng thái thành công',
                         'success'
                     )
-                    check.attr("checked" , true)
+                    if(result.value.data.status==="ACTIVE"){
+                        check.prop('checked' , true)
+                    }else  check.prop('checked' , false)
                 }
 
             }

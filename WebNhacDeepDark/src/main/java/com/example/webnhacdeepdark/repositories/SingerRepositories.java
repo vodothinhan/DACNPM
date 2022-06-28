@@ -8,6 +8,6 @@ import java.util.List;
 public interface SingerRepositories extends JpaRepository<Singer, Integer> {
     public Singer findSingerById(int id);
     List<Singer> findByNameContainingIgnoreCase(String name);
-
     public void deleteSingerById(int id);
+
 }

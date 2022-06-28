@@ -138,7 +138,7 @@
                                 </div>
                             </td>
                             <td>${author.name}</td>
-                            <td><i class="fa-solid fa-pen-to-square"></i></td>
+                            <td><i class="fa-solid fa-pen-to-square" data-name = "${author.name}" data-id="${author.id}"></i></td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -37,7 +37,7 @@ $(document).ready(function () {
                         cancelButtonText: 'Hủy bỏ',
                         showLoaderOnConfirm: true,
                         preConfirm: () => {
-                            return fetch("/deleteSinger",{
+                            return fetch("/deleteAuthor",{
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -79,8 +79,50 @@ $(document).ready(function () {
             {
                 text: 'Thêm tác giả',
                 className : 'btn btn-success btn-sm ms-4',
-                action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
+                action: async function (e, dt, node, config) {
+                    const {value: author} = await Swal.fire({
+                        title: 'Thêm mới tác giả',
+                        input: 'text',
+                        inputLabel: 'Vui lòng nhập tên tác giả:',
+                        inputPlaceholder: 'Điền tên tác giả ở đây!',
+                        showCancelButton: true,
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Hủy bỏ'
+                    })
+                    if (author) {
+                        fetch("/addAuthor", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: author
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                }
+                                return response.json()
+                            }).then((result) => {
+                            if (result) {
+                                if (result.data) {
+                                    table.row.add([`<div class="form-check no-switch-parent"><input class="form-check-input no-switch" type="checkbox" value=${result.data.id}>
+                                    <label class="form-check-label" >
+                                            ${result.data.id}
+                                    </label></div>`, result.data.name, `<i class="fa-solid fa-pen-to-square" data-name = ${result.data.name} data-id=${result.data.id}></i>`]).draw()
+                                    Swal.fire(
+                                        'Đã thêm',
+                                        'Bạn đã thêm thành công',
+                                        'success'
+                                    )
+                                }
+                            }
+                        })
+                            .catch(error => {
+                                Swal.showValidationMessage(
+                                    "Thêm không thành công !"
+                                )
+                            })
+                    }
                 }
             }
         ]
@@ -95,4 +137,64 @@ $(document).ready(function () {
         countChecked()===0?$(".btn-danger").addClass("disabled"):$(".btn-danger").removeClass("disabled")
     })
 
+    $("#table-author").on("click",".fa-solid.fa-pen-to-square",async function () {
+        let object = {id : $(this).attr('data-id'),
+            name : $(this).attr('data-name') }
+        let  row = $(this).parents('tr')[0]
+        let name = $(this).attr('data-name')
+        console.log(JSON.stringify(object))
+
+        const {value: author} = await Swal.fire({
+            title: 'Chỉnh sửa tên tác giả',
+            input: 'text',
+            inputLabel: 'Vui lòng nhập tên mới cho tác giả:',
+            inputPlaceholder: 'Điền tên mới cho tác giả ở đây!',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Hủy bỏ',
+            inputValidator: (value) => {
+                if(value===name)
+                    return 'Vui lòng điền tên khác!'
+                if(!value){
+                    return 'Vui lòng điền tên vào ô trống!'
+                }
+            }
+        })
+
+        if (author && !(name===author) && !(author==="")) {
+            object.name = author;
+            fetch("/updateAuthor", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    }
+                    return response.json()
+                }).then((result) => {
+                if (result) {
+                    if (result.data) {
+                        table.row(table.row(row).index()).data([`<div class="form-check no-switch-parent"><input class="form-check-input no-switch" type="checkbox" value=${result.data.id}>
+                                    <label class="form-check-label" >
+                                            ${result.data.id}
+                                    </label></div>`,result.data.name,`<i class="fa-solid fa-pen-to-square" data-name = ${result.data.name} data-id=${result.data.id}></i>`]).draw();
+                        Swal.fire(
+                            'Đã chỉnh sửa',
+                            'Bạn đã chỉnh sửa thành công',
+                            'success'
+                        )
+                    }
+                }
+            })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        "Chỉnh sửa không thành công !"
+                    )
+                })
+        }
+    })
 });

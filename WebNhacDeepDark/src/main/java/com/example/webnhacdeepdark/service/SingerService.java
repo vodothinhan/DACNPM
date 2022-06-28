@@ -1,6 +1,7 @@
 package com.example.webnhacdeepdark.service;
 
 import com.example.webnhacdeepdark.entity.Singer;
+import com.example.webnhacdeepdark.entity.Song;
 import com.example.webnhacdeepdark.repositories.SingerRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,13 +38,18 @@ public class SingerService {
         return singerRepositories.findById(id) ;
     }
 
+    @Transactional
     public void deleteSinger(int id){
         singerRepositories.deleteSingerById(id);
     }
+
     @Transactional
     public boolean deleteManySinger(ArrayList<Integer> listIdSinger){
         try{
                 for (Integer id : listIdSinger){
+                    for (Song song : findSingerById(id).getSongList()){
+                        song.setSinger(null);
+                    }
                     deleteSinger(id);
                 }
             return true ;
@@ -52,5 +58,14 @@ public class SingerService {
         }
     }
 
+    @Transactional
+    public Singer addSinger(String nameSinger) {
+            return singerRepositories.save(new Singer(nameSinger));
+    }
 
+    @Transactional
+    public Singer updateSinger(Singer singer) {
+            findSingerById(singer.getId()).setName(singer.getName());
+            return findSingerById(singer.getId());
+    }
 }

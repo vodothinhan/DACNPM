@@ -80,15 +80,48 @@ $(document).ready(function () {
                 text: 'Thêm nghệ sĩ',
                 className : 'btn btn-success btn-sm ms-4',
                 action: async function (e, dt, node, config) {
-                    const {value: email} = await Swal.fire({
-                        title: 'Nhập tên ',
-                        input: 'email',
-                        inputLabel: 'Your email address',
-                        inputPlaceholder: 'Enter your email address'
+                    const {value: singer} = await Swal.fire({
+                        title: 'Thêm mới nghệ sĩ',
+                        input: 'text',
+                        inputLabel: 'Vui lòng nhập tên nghệ sĩ:',
+                        inputPlaceholder: 'Điền tên nghệ sĩ ở đây!',
+                        showCancelButton: true,
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Hủy bỏ'
                     })
-
-                    if (email) {
-                        Swal.fire(`Entered email: ${email}`)
+                    if (singer) {
+                        fetch("/addSinger",{
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: singer
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                }
+                                return response.json()
+                            }).then((result) => {
+                                if (result) {
+                                    if (result.data){
+                                        table.row.add([`<div class="form-check no-switch-parent"><input class="form-check-input no-switch" type="checkbox" value=${result.data.id}>
+                                    <label class="form-check-label" >
+                                            ${result.data.id}
+                                    </label></div>`,result.data.name,`<i class="fa-solid fa-pen-to-square" data-name = ${result.data.name} data-id=${result.data.id}></i>`]).draw()
+                                        Swal.fire(
+                                            'Đã thêm',
+                                            'Bạn đã thêm thành công',
+                                            'success'
+                                        )
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                Swal.showValidationMessage(
+                                    "Thêm không thành công !"
+                                )
+                            })
                     }
                 }
             }
@@ -104,4 +137,64 @@ $(document).ready(function () {
         countChecked()===0?$(".btn-danger").addClass("disabled"):$(".btn-danger").removeClass("disabled")
     })
 
+    $("#table-singer ").on("click",".fa-solid.fa-pen-to-square",async function () {
+        let object = {id : $(this).attr('data-id'),
+                      name : $(this).attr('data-name') }
+        let  row = $(this).parents('tr')[0]
+        let name = $(this).attr('data-name')
+        console.log(JSON.stringify(object))
+
+        const {value: singer} = await Swal.fire({
+            title: 'Chỉnh sửa tên nghệ sĩ',
+            input: 'text',
+            inputLabel: 'Vui lòng nhập tên mới cho nghệ sĩ:',
+            inputPlaceholder: 'Điền tên mới cho nghệ sĩ ở đây!',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Hủy bỏ',
+            inputValidator: (value) => {
+                if(value===name)
+                    return 'Vui lòng điền tên khác!'
+                if(!value){
+                    return 'Vui lòng điền tên vào ô trống!'
+                }
+            }
+        })
+
+        if (singer && !(name===singer) && !(singer==="")) {
+            object.name = singer;
+            fetch("/updateSinger", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    }
+                    return response.json()
+                }).then((result) => {
+                if (result) {
+                    if (result.data) {
+                        table.row(table.row(row).index()).data([`<div class="form-check no-switch-parent"><input class="form-check-input no-switch" type="checkbox" value=${result.data.id}>
+                                    <label class="form-check-label" >
+                                            ${result.data.id}
+                                    </label></div>`,result.data.name,`<i class="fa-solid fa-pen-to-square" data-name = ${result.data.name} data-id=${result.data.id}></i>`]).draw();
+                        Swal.fire(
+                            'Đã chỉnh sửa',
+                            'Bạn đã chỉnh sửa thành công',
+                            'success'
+                        )
+                    }
+                }
+            })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        "Chỉnh sửa không thành công !"
+                    )
+                })
+        }
+    })
 });

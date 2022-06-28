@@ -1,6 +1,8 @@
 package com.example.webnhacdeepdark.service;
 
 import com.example.webnhacdeepdark.entity.Author;
+import com.example.webnhacdeepdark.entity.Singer;
+import com.example.webnhacdeepdark.entity.Song;
 import com.example.webnhacdeepdark.repositories.AuthorRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,11 +45,23 @@ public class AuthorService {
     public boolean deleteManyAuthor(ArrayList<Integer> listIdAuthor){
         try{
             for (Integer id : listIdAuthor){
+                for (Song song : getAuthorByID(id).getSongList()){
+                    song.setAuthor(null);
+                }
                 deleteAuthor(id);
             }
             return true ;
         }catch (Exception e){
             return  false ;
         }
+    }
+
+    public Author addAuthor(String nameAuthor){
+        return authorRepositories.save(new Author(nameAuthor));
+    }
+
+    public Author updateAuthor(Author author) {
+        getAuthorByID(author.getId()).setName(author.getName());
+        return getAuthorByID(author.getId());
     }
 }

@@ -31,4 +31,13 @@ public class ManageSongService {
     public Song updateStatus(int idSong){
          return service.updateStatusSong(idSong);
     }
+
+    public Boolean updatePlaylist(int idSong,int idUser) {
+        try{
+            service.updatePlaylist(idSong,idUser);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

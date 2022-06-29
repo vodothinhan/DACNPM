@@ -150,4 +150,9 @@ public class Song implements Serializable {
     public void setSinger(Singer singer) {
         this.singer = singer;
     }
+
+    public Integer getIdUserPlaylist() {
+        if(getPlayList()==null) return null;
+        return getPlayList().getUsers().getId();
+    }
 }

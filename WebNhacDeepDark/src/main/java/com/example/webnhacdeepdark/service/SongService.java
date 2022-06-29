@@ -178,6 +178,11 @@ public class SongService {
         return songRepositories.save(song) ;
 
     }
+    @Transactional
+    public void deleteAlbum(int id){
+        Song song = findSongById(id) ;
+        song.setAlbum(null);
+    }
 
 
 }

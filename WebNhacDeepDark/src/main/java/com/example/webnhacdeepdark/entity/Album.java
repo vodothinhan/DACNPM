@@ -76,4 +76,9 @@ public class Album implements Serializable {
     public void setSongList(List<Song> songList) {
         this.songList = songList;
     }
+
+    public  void deleteAuthor(){
+        getAuthor() ;
+        this.setAuthor(null);
+    }
 }

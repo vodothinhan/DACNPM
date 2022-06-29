@@ -61,7 +61,7 @@ public class UserService {
     public boolean saveUser(UserModel user) {
         try {
             Users u = convertUser.toEntity(user);
-            userRepositories.save(u);
+           this.user = userRepositories.save(u);
         } catch (Exception e) {
             return false;
         }
@@ -165,6 +165,9 @@ public class UserService {
 
         return userRepositories.save(user) ;
 
+    }
+    public Users getUser(){
+        return user ;
     }
 
 

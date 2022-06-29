@@ -1,6 +1,8 @@
 package com.example.webnhacdeepdark.controller;
 
+import com.example.webnhacdeepdark.entity.Author;
 import com.example.webnhacdeepdark.model.UserModel;
+import com.example.webnhacdeepdark.service.PlaylistService;
 import com.example.webnhacdeepdark.service.UserService;
 import com.example.webnhacdeepdark.utilities.CreateDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class RegisterController {
     CreateDate createDate ;
     @Autowired
     UserService userService ;
+    @Autowired
+    PlaylistService playlistService ;
     @RequestMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute(name = "user") UserModel user, BindingResult result, ModelMap model){
            if(result.hasErrors()){
@@ -30,6 +34,7 @@ public class RegisterController {
            }
           else {
                if(userService.saveUser(user)){
+                   playlistService.savePlayList(userService.getUser());
                    model.addAttribute("register" ,true);
                    return new ModelAndView("redirect:login" , model) ;
                }

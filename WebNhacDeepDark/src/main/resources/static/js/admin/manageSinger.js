@@ -142,7 +142,6 @@ $(document).ready(function () {
                       name : $(this).attr('data-name') }
         let  row = $(this).parents('tr')[0]
         let name = $(this).attr('data-name')
-        console.log(JSON.stringify(object))
 
         const {value: singer} = await Swal.fire({
             title: 'Chỉnh sửa tên nghệ sĩ',

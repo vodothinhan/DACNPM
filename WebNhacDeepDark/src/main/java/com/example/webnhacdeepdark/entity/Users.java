@@ -148,6 +148,10 @@ public class Users implements Serializable {
         return playLists;
     }
 
+    public Integer getIdPlaylist(){
+        return getPlayLists().get(0).getId();
+    }
+
     public void setPlayLists(List<PlayList> playLists) {
         this.playLists = playLists;
     }

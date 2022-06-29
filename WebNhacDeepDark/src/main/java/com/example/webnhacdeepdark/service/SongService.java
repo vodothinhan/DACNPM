@@ -1,9 +1,6 @@
 package com.example.webnhacdeepdark.service;
 
-import com.example.webnhacdeepdark.entity.Album;
-import com.example.webnhacdeepdark.entity.Author;
-import com.example.webnhacdeepdark.entity.Singer;
-import com.example.webnhacdeepdark.entity.Song;
+import com.example.webnhacdeepdark.entity.*;
 import com.example.webnhacdeepdark.repositories.SongRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +14,12 @@ import java.util.Optional;
 public class SongService {
     @Autowired
     SongRepositories songRepositories;
+
+    @Autowired
+    PlaylistService playlistService;
+
+    @Autowired
+    UserService userService;
 
     public Song getSongByID(int id) {
         return songRepositories.findById(id).get();
@@ -182,6 +185,23 @@ public class SongService {
     public void deleteAlbum(int id){
         Song song = findSongById(id) ;
         song.setAlbum(null);
+    }
+
+    @Transactional
+    public boolean updatePlaylist(int idSong,int idUser){
+        try {
+            Song song = findSongById(idSong);
+            if(song==null) throw  new RuntimeException("not found song") ;
+            Users users = userService.findUserById(idUser);
+            PlayList playList = playlistService.findPlaylistByUser(users);
+            song.setPlayList(playList);
+            playlistService.addSongToPlaylist(song,playList);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+
     }
 
 

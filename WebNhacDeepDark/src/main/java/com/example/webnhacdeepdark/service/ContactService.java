@@ -10,9 +10,7 @@ public class ContactService {
     @Autowired
     ContactRepositories contactRepositories;
 
-    public void save(Contact contact) {
-
-        contactRepositories.save(contact);};
+    public void save(Contact contact) {contactRepositories.save(contact);};
 
     public void delete(Contact contact) {contactRepositories.delete(contact);};
 

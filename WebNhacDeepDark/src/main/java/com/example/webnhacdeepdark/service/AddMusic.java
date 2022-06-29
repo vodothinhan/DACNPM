@@ -25,7 +25,7 @@ public class AddMusic {
             song.setLinkMP3("/thumbnail/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileMusic()));
             song.setLinkImage("/mp3/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileThumbnail()));
             songService.saveSong(song) ;
-            System.out.println((System.currentTimeMillis()-start)/1000 +" seconds");
+            System.out.println((System.currentTimeMillis()-start)/1000 +" giay");
             return  true ;
         } catch (Exception e){
             System.out.println(e.getMessage());

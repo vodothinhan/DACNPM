@@ -107,6 +107,7 @@ $(document).ready(function () {
                 })
                     .then(response => {
                         if (!response.ok) {
+
                             throw new Error(response.statusText)
                         }
                         return response.json()
@@ -126,9 +127,11 @@ $(document).ready(function () {
                         'Bạn đã thay đổi trạng thái thành công',
                         'success'
                     )
+
                    if(result.value.data.status==="ACTIVE"){
                        check.prop("checked" , true)
                    }else  check.prop("checked" , false)
+
                 }
 
             }

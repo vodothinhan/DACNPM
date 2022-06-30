@@ -114,7 +114,7 @@ $(document).ready(function () {
                     })
                     .catch(error => {
                         Swal.showValidationMessage(
-                            "Thay đổi trạng thái không thành công !"
+                           "Thay đổi trạng thái không thành công ! "
                         )
                     })
             },
@@ -127,9 +127,11 @@ $(document).ready(function () {
                         'Bạn đã thay đổi trạng thái thành công',
                         'success'
                     )
-                    if(result.value.data.status==="ACTIVE"){
-                        check.prop('checked' , true)
-                    }else  check.prop('checked' , false)
+
+                   if(result.value.data.status==="ACTIVE"){
+                       check.prop("checked" , true)
+                   }else  check.prop("checked" , false)
+
                 }
 
             }

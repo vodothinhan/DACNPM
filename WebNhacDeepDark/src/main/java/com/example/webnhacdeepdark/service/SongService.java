@@ -181,6 +181,28 @@ public class SongService {
         return songRepositories.save(song) ;
 
     }
+    @Transactional
+    public void deleteAlbum(int id){
+        Song song = findSongById(id) ;
+        song.setAlbum(null);
+    }
+
+    @Transactional
+    public boolean updatePlaylist(int idSong,int idUser){
+        try {
+            Song song = findSongById(idSong);
+            if(song==null) throw  new RuntimeException("not found song") ;
+            Users users = userService.findUserById(idUser);
+            PlayList playList = playlistService.findPlaylistByUser(users);
+            song.setPlayList(playList);
+            playlistService.addSongToPlaylist(song,playList);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+
+    }
 
     @Transactional
     public boolean updatePlaylist(int idSong,int idUser){

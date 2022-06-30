@@ -155,4 +155,11 @@ public class Song implements Serializable {
         if(getPlayList()==null) return null;
         return getPlayList().getUsers().getId();
     }
+
+    public void deleteAlbum(){
+        getAlbum();
+        this.setAlbum(null);
+    }
+
+
 }

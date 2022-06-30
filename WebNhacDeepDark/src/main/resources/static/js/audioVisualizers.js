@@ -158,7 +158,7 @@ function main(songName, action) {
 
     if (action === 'next') {
         const audio = document.getElementById('audio');
-        audio.src = `${songName}.mp3`;
+        audio.src = `/mp3/${songName}.mp3`;
 
         audioContext = new AudioContext();
 

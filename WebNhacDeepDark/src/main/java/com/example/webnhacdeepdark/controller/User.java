@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,11 +29,11 @@ public class User {
     //    @Autowired
 //    SingerService singerService;
     @RequestMapping(path = "/user", method = RequestMethod.GET)
-    public ModelAndView user(){
+    public ModelAndView user(HttpSession httpSession){
         ModelAndView mav = new ModelAndView("user");
-        Users s = userService.findById(1);
+        Users s = (Users) httpSession.getAttribute("user");
 
-        Song ss =songService.findById(11);
+//        Song ss =songService.findById(11);
 //        Singer sss =ss.getSinger();
 //        List<PlayList> list =s.getPlayLists();
 
@@ -44,7 +45,7 @@ public class User {
 
 
 //        mav.addObject("list",list);
-        mav.addObject("song",ss);
+        mav.addObject("song",new Song());
 //        mav.addObject("singer",sss);
         mav.addObject("user",s);
         return mav;

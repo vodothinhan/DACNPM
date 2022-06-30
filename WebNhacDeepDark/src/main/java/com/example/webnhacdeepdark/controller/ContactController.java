@@ -31,6 +31,7 @@ public class ContactController {
         Contact contact = new Contact(message, new Date(), user);
         contactService.save(contact);
         ModelAndView mav = new ModelAndView("contact");
+        mav.addObject("message", true);
         return mav;
     }
 }

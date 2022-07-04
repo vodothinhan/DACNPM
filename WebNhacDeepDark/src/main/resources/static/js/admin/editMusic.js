@@ -1,14 +1,6 @@
 var listInput = document.querySelectorAll('.input-value')
-var fileThumnail = document.querySelector('.file-thumbnail')
-var fileMusic = document.querySelector('.file-music')
 var btnUpload = document.querySelector('.btn-upload')
-const extendsionThumnail =['image/png', 'image/jpeg','image/jpeg'];
-const extendsionMusic = ['video/mp3','video/mp4','audio/mpeg']
 const  NOT_NULL = "Trường này không được trống !"
-const FILE_OVER_SIZE = "Kích thước file quá lớn !"
-const FILE_EXTENSION_THUMBNAIL = "Kiểu file phải là file ảnh (png , jpg ,....) !"
-const FILE_EXTENSION_MUSIC  ="Kiểu file phải là file music (mp3 , mp4 ) !"
-const MAX_SIZE = 500*1024*1024
 const NOT_EXIST = " Bạn cần phải thêm album mới!"
 var inputNameSinger = document.querySelector(".nameSinger")
 var inputNameAuthor = document.querySelector(".nameAuthor")
@@ -91,59 +83,26 @@ btnCancelNewmAlbum.addEventListener('click', (event) => {
 
 })
 btnUpload.addEventListener('click' ,   (event) =>{
-    event.preventDefault()
     inputCurrent = null
     if(!checkAllPrevUpload(document.querySelectorAll(".form-music-input")) | !checkTypeSong()){
+        event.preventDefault()
         return
     }
     let valueAlbum = document.querySelector('.form-control.nameAlbum').value
-
     if(valueAlbum.trim().length!==0){
-        let str1 = hiddenAlbum.value.trim().length===0?false:true
-        let str2 =  inputNameAuthorOfAlbum.value.trim().length===0?false:true
-        if(str2||str1){
-            uploadFile()
-            return;
-        }
-        else {
+        let str1 = hiddenAlbum.value.trim().length===0?true:false
+        let str2 =  inputNameAuthorOfAlbum.value.trim().length===0?true:false
+        if(str1&&str2){
             let  err = document.querySelector(".err-album")
             err.innerHTML=NOT_EXIST
             inputNameAlbum.classList.contains('is-valid')&&inputNameAlbum.classList.remove('is-valid')
             inputNameAlbum.classList.add('is-invalid')
-            return;
+            event.preventDefault()
         }
-    }else uploadFile()
 
-
+    }
 
 })
-function checkFileSize(file , element, message){
-    if(file.size>MAX_SIZE){
-        element.classList.contains('is-valid') && element.classList.remove('is-valid')
-        element.classList.add('is-invalid')
-        let err = element.parentElement.querySelector(".invalid-feedback")
-        err.innerHTML = message ;
-        return false
-    }
-    element.classList.contains('is-invalid') && element.classList.remove('is-invalid')
-    element.classList.add('is-valid')
-    return true
-
-}
-function checkExtendsionFile(listExtendsion ,file, element,message){
-
-    if( listExtendsion.indexOf(file.type)===-1) {
-        element.classList.contains('is-valid') && element.classList.remove('is-valid')
-        element.classList.add('is-invalid')
-        let err = element.parentElement.querySelector(".invalid-feedback")
-        err.innerHTML = message ;
-        return false
-    }
-    element.classList.contains('is-invalid') && element.classList.remove('is-invalid')
-    element.classList.add('is-valid')
-    return true
-
-}
 function checkValueInput(element, message){
     let value = element.value.trim()
     if(!value.length){
@@ -156,10 +115,7 @@ function checkValueInput(element, message){
     element.classList.contains('is-invalid') && element.classList.remove('is-invalid')
     element.classList.add('is-valid')
     return true
-
 }
-
-
 listInput.forEach(element =>{
     element.addEventListener('blur' ,() =>{
         checkValueInput(element,NOT_NULL)
@@ -170,19 +126,6 @@ listInput.forEach(element =>{
         checkValueInput(element,NOT_NULL )
     })
 })
-fileMusic.addEventListener('change' , (event) =>{
-    let file = event.target.files[0]
-    if(!checkExtendsionFile(extendsionMusic,file,fileMusic,FILE_EXTENSION_MUSIC)) return
-    checkFileSize(file,fileMusic,FILE_OVER_SIZE)
-
-
-})
-fileThumnail.addEventListener('change',(event) =>{
-    let file = event.target.files[0]
-    if(!checkExtendsionFile(extendsionThumnail,file,fileThumnail,FILE_EXTENSION_THUMBNAIL)) return
-    checkFileSize(file,fileThumnail,FILE_OVER_SIZE)
-})
-
 inputNameSinger.addEventListener('input' , () =>{
     checkValueInput(inputNameSinger, NOT_NULL)
     hiddenSinger.value = ''
@@ -252,38 +195,37 @@ inputNameAuthor.addEventListener('focus' ,async () =>{
     let DOMParent = document.querySelector(".displayAuthor")
     inputCurrent = inputNameAuthor
     addClassCss(DOMParent,'show')
-    if(inputNameAuthor.value.trim().length===0){
         let data = await fetchDataFromServer('/getAllAuthor')
         UIWithData(data, DOMParent)
-    }
+
 })
 inputNameAuthorOfAlbum.addEventListener('focus' ,async () =>{
     let DOMParent = document.querySelector(".display-form-author")
     inputCurrent = inputNameAuthorOfAlbum
     addClassCss(DOMParent,'show')
-    if(inputNameAuthorOfAlbum.value.trim().length===0){
+
         let data = await fetchDataFromServer('/getAllAuthor')
         UIWithData(data, DOMParent)
-    }
+
 })
 
 inputNameSinger.addEventListener('focus' ,  async () =>{
     let DOMParent = document.querySelector(".displaySinger")
     inputCurrent = inputNameSinger
     addClassCss(DOMParent,'show')
-    if(inputNameSinger.value.length===0){
+
         let data = await fetchDataFromServer('/getAllSinger')
         UIWithData(data, DOMParent)
-    }
+
 })
 inputNameAlbum.addEventListener('focus' , async () =>{
     inputCurrent = inputNameAlbum
     let DOMParent = document.querySelector('.displayAlbum')
     addClassCss(DOMParent ,'show')
-    if(inputNameAlbum.value.trim().length===0){
+
         let data = await fetchDataFromServer('/getAllAlbum')
         UIWithData(data,DOMParent)
-    }
+
 
 })
 document.addEventListener('click' , (event) =>{
@@ -341,14 +283,6 @@ function checkAllPrevUpload(listAll){
         if(typeInput==='text'){
             checkValueInput(input,NOT_NULL)
         }
-        if(typeInput==='file'){
-            if(input.files[0]){
-                if(input.files[0].length===0) input.classList.add('is-invalid')
-            }
-            else input.classList.add('is-invalid')
-        }
-
-
     })
     listAll.forEach(input =>{
         input.classList.contains('is-valid') && count ++
@@ -372,68 +306,6 @@ function  checkTypeSong(){
     selectTypesong.classList.add('is-valid')
     return  true
 }
-
-function  uploadFile() {
-    let form = document.querySelector('.form-upload')
-    let formData = new FormData(form)
-    let progress =  document.querySelector('.progress-bar')
-    let progressBar =  document.querySelector('.progress')
-    removeClassCSS(progressBar,'d-none')
-    addClassCss(progressBar,'d-block')
-    progress.innerHTML = "0%"
-    progress.setAttribute("aria-valuenow", 0);
-    progress.style.width = "0%";
-    const  onUploadProgress = (event) =>{
-        const percentage = Math.round(((100*event.loaded)/event.total)-1)
-        progress.setAttribute('aria-valuenow' , percentage)
-        progress.innerHTML = percentage + "%"
-        progress.style.width = percentage + "%";
-    }
-    axios({
-        method: "post",
-        url: "/addMusic",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-        onUploadProgress
-    }).then(res => {
-            let alterSucess = document.querySelector('.alert-success')
-            removeClassCSS(progressBar , 'd-block')
-            addClassCss(progressBar,'d-none')
-            removeClassCSS(alterSucess , 'd-none')
-            addClassCss(alterSucess,'d-block')
-            resetForm()
-            setTimeout(() =>{
-                removeClassCSS(alterSucess , 'd-blobk')
-                addClassCss(alterSucess,'d-none')
-            } , 10000)
-            console.log(res.data)
-        }
-    )
-        .catch(err =>{
-            let alterDanger = document.querySelector('.alert-danger')
-            removeClassCSS(alterDanger , 'd-none')
-            addClassCss(alterDanger,'d-block')
-            setTimeout(() =>{
-                removeClassCSS(alterDanger , 'd-blobk')
-                addClassCss(alterDanger,'d-none')
-            },10000)
-            console.log(err)
-        })
-}
-
-function resetForm(){
-    document.querySelector('.form-upload').reset()
-    let errs = document.querySelectorAll('.form-control')
-    errs.forEach(err =>{
-        err.classList.remove('is-valid')
-        err.classList.remove('is-invalid')
-    })
-    selectTypesong.classList.remove('is-valid')
-    selectTypesong.classList.remove('is-invalid')
-    inputCurrent=null
-
-}
-
 
 
 

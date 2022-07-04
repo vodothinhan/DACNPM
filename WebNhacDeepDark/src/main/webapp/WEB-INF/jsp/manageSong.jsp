@@ -120,6 +120,13 @@
             <a href="/admin/add-music" class="d-none direct-page-add-music"></a>
             <h3>Quản lí bài hát</h3>
         </div>
+        <c:if test="${editSong==true}">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="alert alert-success" style="width: 90% ; font-size: 20px"  role="alert">
+                    Chỉnh sửa bài hát thành công
+                </div>
+            </div>
+        </c:if>
         <div class="container-table">
             <div style="width: 90% ; padding: 10px ; background: #FFFFFF" >
                 <table id="table-song" class="table table-striped" style="width:100%">
@@ -187,7 +194,6 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/manageMusic.js"></script>
-
 
 </body>
 

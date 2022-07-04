@@ -138,5 +138,10 @@ $(document).ready(function () {
         })
 
     })
+    if($('.alert-success')){
+        setTimeout(()=>{
+            $('.alert-success').hide('fast')
+        },5000)
+    }
 
 });

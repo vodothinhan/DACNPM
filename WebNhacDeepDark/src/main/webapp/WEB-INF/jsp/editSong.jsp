@@ -100,14 +100,18 @@
                 <li class="breadcrumb-item active" aria-current="page">Thêm nhạc</li>
             </ol>
         </nav>
+        <c:if test="${editSong==false}">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="alert alert-danger"  role="alert">
+                    Chỉnh sửa bài hát không thành công
+                </div>
+            </div>
+        </c:if>
         <div class="d-flex justify-content-center align-content-center my-2">
-            <form:form modelAttribute="song" method="post" class="form-upload shadow-sm rounded-3 novalidate">
+            <form:form modelAttribute="song" method="post" action="/admin/edit-song" class="form-upload shadow-sm rounded-3 novalidate">
                 <form:hidden path="idSong"/>
                 <div class="form-music">
-                    <div class="progress d-none">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
-                             aria-valuemin="0" aria-valuemax="100">25%</div>
-                    </div>
+                    <h1 class="display-6 text-center">Chỉnh sửa bài hát</h1>
                     <div class="alert alert-success d-none" role="alert">
                         Thêm bài hát thành công
                     </div>
@@ -184,8 +188,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="validationServer04" class="form-label">Thể loại</label>
-                        <form:select path="typeSong" cssClass="form-select form-select-sm select-type-song" id="validationServer04" aria-describedby="validationServer04Feedback" required="required">
+                        <label  class="form-label">Thể loại</label>
+                        <form:select path="typeSong" cssClass="form-select form-select-sm select-type-song">
                             <form:option selected="selected" disabled="disabled" value="">Loại nhạc</form:option>
                             <form:options items="${listType}"></form:options>
                         </form:select>
@@ -194,20 +198,7 @@
                             Vui lòng chọn thể loại nhạc !
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <label  class="form-label">Thumbnail</label>
-                        <input type="file" class="form-control form-control-sm file-thumbnail form-music-input" name="fileThumbnail"
-                               enctype="multipart/form-data" aria-label="file example" >
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="mb-5">
-                        <label  class="form-label">File music</label>
-                        <input type="file" class="form-control form-control-sm file-music form-music-input" name="fileMusic"
-                               enctype="multipart/form-data" aria-label="file example">
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div>
+                    <div class="mt-5">
                         <button class="btn btn-success me-4 btn-upload" type="submit">Chỉnh sửa bài hát</button>
                         <a href="/admin/manage-song" class="btn btn-danger" tabindex="-1" role="button" >Hủy bỏ</a>
 
@@ -219,7 +210,7 @@
                     <div class="mb-2">
                         <h1 class="display-6">Thêm Album mới</h1>
                         <label  class="form-label">Tên album</label>
-                        <input type="text" class="form-control form-control-sm input-value inputNameOfAlbum form-of-album" name="nameNewAlbum" >
+                        <form:input path="nameNewAlbum" class="form-control form-control-sm input-value inputNameOfAlbum form-of-album" name="nameNewAlbum" />
                         <div class="invalid-feedback">
 
                         </div>
@@ -227,8 +218,8 @@
                     </div>
                     <div class="mb-2 ">
                         <label class="form-label">Tên tác giả</label>
-                        <input type="text" class="form-control form-control-sm nameAuthorOfAlbum form-of-album" name="nameAuthorNewAlbm">
-                        <input class="hidden-of-album" name="idAuthorOfNewAlbum" type="hidden"/>
+                        <form:input path="nameAuthorNewAlbm" cssClass="form-control form-control-sm nameAuthorOfAlbum form-of-album"/>
+                        <form:hidden path="idAuthorOfNewAlbum" cssClass="hidden-of-album" />
                         <div class="dropdown">
                             <ul class="dropdown-menu  ps-2 display-form-author" style="overflow-y: auto; max-height: 200px;">
                                 <div class="d-flex justify-content-center">
@@ -246,35 +237,30 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-3 position-relative">
-                                <select name="day" class="form-select album">
-                                    <option selected disabled value="">Ngày</option>
-                                    <c:forEach var="day" items="${listDay}">
-                                        <option value="${day}">${day}</option>
-                                    </c:forEach>
-                                </select>
+                                <form:select path="day" cssClass="form-select album"  >
+                                    <form:option selected="selected" disabled="disabled" value="">Ngày</form:option>
+                                    <form:options items="${listDay}"></form:options>
+
+                                </form:select>
 
 
                             </div>
                             <div class="col-1 h4">/</div>
 
                             <div class="col-3 position-relative">
-                                <select  name="month" class="form-select album" required>
-                                    <option selected disabled value="">Tháng</option>
-                                    <c:forEach var="month" items="${listMonth}">
-                                        <option value="${month}" >${month}</option>
-                                    </c:forEach>
+                                <form:select  path="month" cssClass="form-select album" >
+                                    <form:option selected="selected" disabled ="disabled" value="">Tháng</form:option>
+                                    <form:options items="${listMonth}" ></form:options>
 
-                                </select>
+                                </form:select>
 
                             </div>
                             <div class="col-1 h4">/</div>
                             <div class="col-3">
-                                <select name="year" class="form-select album" required>
-                                    <option selected disabled value="">Năm</option>
-                                    <c:forEach var="year" items="${listYear}">
-                                        <option value="${year}">${year}</option>
-                                    </c:forEach>
-                                </select>
+                                <form:select path="year" cssClass="form-select album" >
+                                    <form:option selected="selected" disabled="disabled" value="">Năm</form:option>
+                                    <form:options items="${listYear}"></form:options>
+                                </form:select>
                             </div>
                         </div>
                         <div class="mt-5">
@@ -305,6 +291,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/editMusic.js"></script>
+<script>
+    if($('.alert-danger')){
+        setTimeout(()=>{
+            $('.alert-danger').hide('fast')
+        },5000)
+    }
+</script>
 </body>
 
 </html>

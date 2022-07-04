@@ -146,4 +146,27 @@ public class FormAddMusic {
     public String getNameAlbum(){
         return nameAlbum ;
     }
+
+    @Override
+    public String toString() {
+        return "FormAddMusic{" +
+                "nameSong='" + nameSong + '\'' +
+                ", idSong='" + idSong + '\'' +
+                ", typeSong='" + typeSong + '\'' +
+                ", idSinger='" + idSinger + '\'' +
+                ", nameSinger='" + nameSinger + '\'' +
+                ", idAuthor='" + idAuthor + '\'' +
+                ", nameAuthor='" + nameAuthor + '\'' +
+                ", idAlbum='" + idAlbum + '\'' +
+                ", nameNewAlbum='" + nameNewAlbum + '\'' +
+                ", idAuthorOfNewAlbum='" + idAuthorOfNewAlbum + '\'' +
+                ", nameAuthorNewAlbm='" + nameAuthorNewAlbm + '\'' +
+                ", fileThumbnail=" + fileThumbnail +
+                ", fileMusic=" + fileMusic +
+                ", day='" + day + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", nameAlbum='" + nameAlbum + '\'' +
+                '}';
+    }
 }

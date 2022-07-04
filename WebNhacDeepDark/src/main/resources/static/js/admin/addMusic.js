@@ -31,8 +31,21 @@ var selectTypesong = document.querySelector('.select-type-song')
 
 btnAddNewAlbumOfAlbum.addEventListener('click' , (event) =>{
     event.preventDefault()
+    let checkDate = false
+    let count = 0
+    document.querySelectorAll(".form-select.album").forEach(item =>{
+        if (item.value.length===0) {
+            item.classList.remove('is-valid')
+            item.classList.add('is-invalid')
+        }else {
+            item.classList.remove('is-invalid')
+            item.classList.add('is-valid')
+            count++
+        }
 
-    if(checkAllPrevUpload(document.querySelectorAll('.form-of-album'))){
+    })
+    if(count===3) checkDate = true
+    if(checkDate & checkAllPrevUpload(document.querySelectorAll('.form-of-album'))){
         removeClassCSS(formAlbum , 'd-block')
         addClassCss(formAlbum,'d-none')
         removeClassCSS(formMusic, 'd-none')
@@ -55,6 +68,11 @@ btnAddNewAlbum.addEventListener('click', (event) => {
     inputNameAuthorOfAlbum.classList.remove('is-valid')
     inputNameOfAlbum.classList.remove('is-invalid')
     inputNameAuthorOfAlbum.classList.remove('is-invalid')
+    document.querySelectorAll('.form-select.album').forEach((item) =>{
+        item.value=''
+        item.classList.remove('is-valid')
+        item.classList.remove('is-invalid')
+    })
 
 })
 btnCancelNewmAlbum.addEventListener('click', (event) => {
@@ -78,19 +96,23 @@ btnUpload.addEventListener('click' ,   (event) =>{
     if(!checkAllPrevUpload(document.querySelectorAll(".form-music-input")) | !checkTypeSong()){
         return
     }
+   let valueAlbum = document.querySelector('.form-control.nameAlbum').value
 
-    let str1 = hiddenAlbum.value.trim().length===0?false:true
-    let str2 =  inputNameAuthorOfAlbum.value.trim().length===0?false:true
-    if(str2||str1){
-        uploadFile()
-    }
-    else {
-        let  err = document.querySelector(".err-album")
-        err.innerHTML=NOT_EXIST
-        inputNameAlbum.classList.contains('is-valid')&&inputNameAlbum.classList.remove('is-valid')
-        inputNameAlbum.classList.add('is-invalid')
-
-    }
+    if(valueAlbum.trim().length!==0){
+        let str1 = hiddenAlbum.value.trim().length===0?false:true
+        let str2 =  inputNameAuthorOfAlbum.value.trim().length===0?false:true
+        if(str2||str1){
+            uploadFile()
+            return;
+        }
+        else {
+            let  err = document.querySelector(".err-album")
+            err.innerHTML=NOT_EXIST
+            inputNameAlbum.classList.contains('is-valid')&&inputNameAlbum.classList.remove('is-valid')
+            inputNameAlbum.classList.add('is-invalid')
+            return;
+        }
+    }else uploadFile()
 
 
 
@@ -210,7 +232,7 @@ inputNameAuthorOfAlbum.addEventListener('input' , () =>{
     }
 })
 inputNameAlbum.addEventListener('input' , () =>{
-    checkValueInput(inputNameAlbum, NOT_NULL)
+    // checkValueInput(inputNameAlbum, NOT_NULL)
     hiddenAlbum.value =''
     inputNameAuthorOfAlbum.value=''
     if(inputNameAlbum.value.trim().length>0){
@@ -278,7 +300,7 @@ async function  fetchDataFromServer(url){
 function UIWithData(data , DOMParent){
     let UI = ''
     data.data.data.forEach(data =>{
-        UI +=`<li data-id=${data.id}>${data.name}</li>`
+        UI +=`<li class="dropdown-item " style="cursor: pointer" data-id=${data.id}>${data.name}</li>`
     })
     DOMParent.innerHTML = UI
 }
@@ -299,12 +321,14 @@ function setValueInputAndHiddenDropdown(event , classTagInput,classTagUl,element
         if(boolean){
             elementInput.value=target.innerText
             elementInput.nextElementSibling.value=target.getAttribute('data-id')
-           console.log(elementInput.nextElementSibling)
             checkValueInput(elementInput, NOT_NULL)
         }
         let DOMParent = document.querySelector("."+classTagUl)
         removeClassCSS(DOMParent , 'show')
-        if( inputCurrent && !inputCurrent.isEqualNode(target)) checkValueInput(inputCurrent,NOT_NULL)
+        if( inputCurrent && !inputCurrent.isEqualNode(target)){
+
+            if(!inputCurrent.classList.contains('nameAlbum')) inputCurrent.classList.contains('nameAlbum')
+        }
 
     }
     return

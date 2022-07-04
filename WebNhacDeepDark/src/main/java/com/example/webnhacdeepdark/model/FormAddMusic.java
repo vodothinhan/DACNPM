@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FormAddMusic {
     private String nameSong ;
+    private String idSong ;
     private String  typeSong ;
     private String  idSinger ;
     private String nameSinger ;
@@ -15,25 +16,10 @@ public class FormAddMusic {
     private String nameAuthorNewAlbm;
     private MultipartFile fileThumbnail;
     private MultipartFile fileMusic;
-
-
-    @Override
-    public String toString() {
-        return "FormAddMusic{" +
-                "nameSong='" + nameSong + '\'' +
-                ", typeSong='" + typeSong + '\'' +
-                ", idSinger=" + idSinger +
-                ", nameSinger='" + nameSinger + '\'' +
-                ", idAuthor=" + idAuthor +
-                ", nameAuthor='" + nameAuthor + '\'' +
-                ", idAlbum=" + idAlbum +
-                ", nameNewAlbum='" + nameNewAlbum + '\'' +
-                ", idAuthorOfNewAlbum=" + idAuthorOfNewAlbum +
-                ", nameAuthorNewAlbm='" + nameAuthorNewAlbm + '\'' +
-                ", fileThumbnail=" + fileThumbnail.getOriginalFilename() +
-                ", fileMusic=" + fileMusic.getOriginalFilename() +
-                '}';
-    }
+    private String day ;
+    private String month;
+    private String year;
+    private String nameAlbum ;
 
     public String getNameSong() {
         return nameSong;
@@ -129,5 +115,35 @@ public class FormAddMusic {
 
     public void setFileMusic(MultipartFile fileMusic) {
         this.fileMusic = fileMusic;
+    }
+    public void setIdSong(String idSong){
+        this.idSong = idSong;
+    }
+    public String getIdSong(){
+        return idSong ;
+    }
+    public void setDay(String day){
+        this.day = day ;
+    }
+    public String getDay(){
+        return day ;
+    }
+    public void setMonth(String month){
+        this.month = month ;
+    }
+    public String getMonth(){
+        return month ;
+    }
+    public void setYear(String year){
+        this.year = year ;
+    }
+    public String getYear(){
+        return year ;
+    }
+    public void setNameAlbum(String nameAlbum){
+        this.nameAlbum = nameAlbum ;
+    }
+    public String getNameAlbum(){
+        return nameAlbum ;
     }
 }

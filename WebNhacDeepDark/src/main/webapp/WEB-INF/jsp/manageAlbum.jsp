@@ -123,14 +123,14 @@
        <c:if test="${add==true}">
            <div class="d-flex justify-content-center align-items-center">
                <div class="alert alert-success" style="width: 90% ; font-size: 20px" role="alert">
-                   Thêm bài hát thành công
+                   Thêm album thành công
                </div>
            </div>
        </c:if>
         <c:if test="${edit==true}">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="alert alert-success" style="width: 90% ; font-size: 20px" role="alert">
-                    Chỉnh sửa bài hát thành công
+                    Chỉnh sửa album thành công
                 </div>
             </div>
         </c:if>

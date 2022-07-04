@@ -203,6 +203,15 @@ public class SongService {
 
 
     }
+    @Transactional
+    public void updateAlbum(Song songfromForm){
+        Song song = songRepositories.findById(songfromForm.getId()).get();
+        song.setName(songfromForm.getName());
+        song.updateAlbum(songfromForm.getAlbum());
+        song.updateAuthor(songfromForm.getAuthor());
+        song.updateSinger(songfromForm.getSinger());
+        song.setType(songfromForm.getType());
+    }
 
 
 }

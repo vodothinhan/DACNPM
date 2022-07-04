@@ -160,6 +160,20 @@ public class Song implements Serializable {
         getAlbum();
         this.setAlbum(null);
     }
+    public void updateSinger(Singer singer){
+        getSinger() ;
+        setSinger(singer);
+    }
+    public void updateAuthor(Author author){
+        getAuthor();
+        setAuthor(author);
+    }
+    public void updateAlbum(Album album){
+        getAlbum() ;
+        setAlbum(album);
+    }
+
+
 
 
 }

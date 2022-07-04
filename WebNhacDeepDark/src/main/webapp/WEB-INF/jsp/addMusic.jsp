@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -7,6 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,6 +102,7 @@
         </nav>
         <div class="d-flex justify-content-center align-content-center my-2">
             <form class="form-upload shadow-sm rounded-3 novalidate">
+                <input type="hidden" name="idSong" value="">
                 <div class="form-music">
                     <div class="progress d-none">
                         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
@@ -160,7 +164,7 @@
                     </div>
                     <label  class="form-label">Album</label>
                     <div class="input-group input-group-sm mb-2">
-                        <input type="text" class="form-control form-music-input nameAlbum" placeholder="Nhập tên album hiện có"
+                        <input type="text" class="form-control  nameAlbum" placeholder="Nhập tên album hiện có"
                                aria-label="Recipient's username" aria-describedby="button-addon2">
                         <input class="hidden-album" type="hidden" name="idAlbum">
                         <button class="btn btn-success add-new-album" type="button" id="button-addon2">Thêm album mới</button>
@@ -185,7 +189,7 @@
                     <div class="mb-2">
                         <label for="validationServer04" class="form-label">Thể loại</label>
                         <select name="typeSong" class="form-select form-select-sm select-type-song" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                            <option selected disabled value="">Choose...</option>
+                            <option selected disabled value="">Loại nhạc</option>
                             <c:forEach var="item" items="${listType}">
                                 <option value="${item}">${item}</option>
                             </c:forEach>
@@ -241,7 +245,42 @@
                             </ul>
                         </div>
                         <div class="invalid-feedback">
+                        </div>
+                        <div class="mt-2">
+                            <label  class="form-label">Ngày ra mắt</label>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-3 position-relative">
+                                <select name="day" class="form-select album">
+                                    <option selected disabled value="">Ngày</option>
+                                    <c:forEach var="day" items="${listDay}">
+                                        <option value="${day}">${day}</option>
+                                    </c:forEach>
+                                </select>
 
+
+                            </div>
+                            <div class="col-1 h4">/</div>
+
+                            <div class="col-3 position-relative">
+                                <select  name="month" class="form-select album" required>
+                                    <option selected disabled value="">Tháng</option>
+                                    <c:forEach var="month" items="${listMonth}">
+                                        <option value="${month}" >${month}</option>
+                                    </c:forEach>
+
+                                </select>
+
+                            </div>
+                            <div class="col-1 h4">/</div>
+                            <div class="col-3">
+                                <select name="year" class="form-select album" required>
+                                    <option selected disabled value="">Năm</option>
+                                    <c:forEach var="year" items="${listYear}">
+                                        <option value="${year}">${year}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                         <div class="mt-5">
                             <button class="btn btn-success me-4 btn-add-new-album">Thêm Album mới</button>

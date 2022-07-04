@@ -59,4 +59,9 @@ public class Contact implements Serializable {
     public void setUsers(Users users) {
         this.users = users;
     }
+    public void deleteUser(){
+        getUsers();
+        setUsers(null);
+    }
+
 }

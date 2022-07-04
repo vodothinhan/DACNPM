@@ -163,7 +163,7 @@
                                    <input class="form-check-input" type="checkbox" value="${song.id}"  ${song.status=="ACTIVE"?"checked":""}>
                                </div>
                            </td>
-                           <td><i class="fa-solid fa-pen-to-square"></i></td>
+                           <td><a href="/admin/edit-song?id=${song.id}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                        </tr>
                    </c:forEach>
                     </tbody>

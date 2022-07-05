@@ -22,8 +22,8 @@ public class AddMusic {
             Song song = songService.saveSong(convertSong.toEntity(formMusic));
             uploadFile.saveFileMusic(formMusic.getFileMusic(), song.getId());
             uploadFile.saveThumbnail(formMusic.getFileThumbnail(), song.getId());
-            song.setLinkMP3("/thumbnail/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileMusic()));
-            song.setLinkImage("/mp3/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileThumbnail()));
+            song.setLinkMP3("/mp3/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileMusic()));
+            song.setLinkImage("/thumbnail/"+song.getId()+uploadFile.getExtensionFile(formMusic.getFileThumbnail()));
             songService.saveSong(song) ;
             System.out.println((System.currentTimeMillis()-start)/1000 +" giay");
             return  true ;

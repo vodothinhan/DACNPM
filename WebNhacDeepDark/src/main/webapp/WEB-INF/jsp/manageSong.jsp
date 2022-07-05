@@ -170,7 +170,10 @@
                                    <input class="form-check-input" type="checkbox" value="${song.id}"  ${song.status=="ACTIVE"?"checked":""}>
                                </div>
                            </td>
-                           <td><a href="/admin/edit-song?id=${song.id}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                           <td><a class="d-inline-block me-2" href="/admin/edit-song?id=${song.id}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <span class="me-2 d-inline-block"><i data-id="${song.id}" data-image="${song.linkImage==null?"":song.linkImage}" class="fa-solid fa-image"></i></span>
+                               <span><i data-id="${song.id}" class="fa-solid fa-video"></i></span>
+                           </td>
                        </tr>
                    </c:forEach>
                     </tbody>

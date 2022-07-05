@@ -144,4 +144,113 @@ $(document).ready(function () {
         },5000)
     }
 
+    // upload mp3
+    $('#table-song').on("click" , ".fa-solid.fa-video" , function (){
+        let id = $(this).attr('data-id')
+        Swal.fire({
+            title: 'Upload file mp3',
+            input :'file',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            showLoaderOnConfirm: true,
+            confirmButtonText: 'Upload',
+            inputValidator: (value) => {
+                if (!value) return 'Bạn chưa chọn file upload'
+                if(['video/mp3','video/mp4','audio/mpeg'].indexOf(value.type)===-1) return 'File không đúng định dạng'
+            }
+            ,preConfirm: (file) => {
+                let form = new FormData()
+                form.append('id' , id)
+                form.append('file',file)
+                return fetch("/edit-file-mp3",{
+                    method: 'POST',
+                    body: form
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(
+                            "Upload file không thành công ! "
+                        )
+                    })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if(result.value.data){
+                    Swal.fire(
+                        'Thành công',
+                        'Bạn đã upload file thành công',
+                        'success'
+                    )
+                }
+
+            }
+        })
+    })
+    $('#table-song').on("click",'.fa-solid.fa-image',function (){
+        let linkImage = $(this).attr('data-image')
+        let id = $(this).attr('data-id')
+        Swal.fire({
+            title: 'Thay đổi thumbnail',
+            imageUrl: linkImage,
+            input :'file',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            showLoaderOnConfirm: true,
+            confirmButtonText: 'Upload',
+            imageWidth: 300,
+            imageHeight: 300,
+            inputValidator: (value) => {
+                if (!value) return 'Bạn chưa chọn file upload'
+                if(['image/png', 'image/jpeg','image/jpeg'].indexOf(value.type)===-1) return 'File không đúng định dạng'
+            },
+            didOpen: () => {
+                const inputRange = Swal.getInput()
+                $(inputRange).on("change",function (event){
+                     let file = event.target.files[0]
+                        if(file) reader.readAsDataURL(file)
+                })
+                let reader = new FileReader();
+                reader.onload = () =>{
+                    Swal.update({ imageUrl: reader.result})
+                }
+            }
+            ,preConfirm: (file) => {
+                let formdata = new FormData()
+                formdata.append('id',id)
+                formdata.append('file',file)
+                return fetch("/edit-file-thumbnail",{
+                    method: 'POST',
+                    body: formdata
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    }
+                    return response.json()
+                }).catch(error => {
+                    Swal.showValidationMessage(
+                        "Upload file không thành công ! "
+                    )
+                })
+        }
+        }).then(result =>{
+            if (result.isConfirmed) {
+                if(result.value.data){
+                    Swal.fire(
+                        'Thành công',
+                        'Bạn đã upload file thành công',
+                        'success'
+                    )
+                }
+            }
+        })
+    })
+
 });

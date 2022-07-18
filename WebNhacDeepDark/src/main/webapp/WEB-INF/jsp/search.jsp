@@ -59,7 +59,9 @@
                                 <img src="${list.linkImage}" class="img col-2">
                                 <div class="col-9">
                                     <div class="col-12">
-                                        <img src="/img/Play.jpg" class="circle">
+                                        <a href="/play/${list.id}">
+                                            <img src="/img/Play.jpg" class="circle">
+                                        </a>
                                         <div class="title-Song col-10">
                                             <p class="nameSong">${list.getName()}</p>
                                             <p class="nameSinger">${list.getSinger().getName()}</p>
@@ -93,7 +95,9 @@
                                 <div class="col-9">
                                     <h3>${messageNameSong}</h3>
                                     <div class="col-12">
-                                        <img src="/img/Play.jpg" class="circle">
+                                        <a href="/play/${list.id}">
+                                            <img src="/img/Play.jpg" class="circle">
+                                        </a>
                                         <div class="title-Song col-10">
                                             <p class="nameSong">${list.name}</p>
                                             <p class="nameSinger">${list.singer.name}</p>
@@ -156,7 +160,9 @@
                                 <img src="${listSongBySinger.linkImage}" class="img col-2">
                                 <div class="col-9">
                                     <div class="col-12">
-                                        <img src="/img/Play.jpg" class="circle">
+                                        <a href="/play/${list.id}">
+                                            <img src="/img/Play.jpg" class="circle">
+                                        </a>
                                         <div class="title-Song col-10">
                                             <p class="nameSong">${listSongBySinger.name}</p>
                                             <p class="nameSinger">${listSongBySinger.singer.name}</p>
@@ -191,7 +197,9 @@
                             <img src="/img/Chilles.jpg" class="img col-2">
                             <div class="col-9">
                                 <div class="col-12">
-                                    <img src="/img/Play.jpg" class="circle">
+                                    <a href="/play/${list.id}">
+                                        <img src="/img/Play.jpg" class="circle">
+                                    </a>
                                     <div class="title-Song col-10">
                                         <p class="nameSong">${list.name}</p>
                                         <p class="nameSinger">${list.author.name}</p>

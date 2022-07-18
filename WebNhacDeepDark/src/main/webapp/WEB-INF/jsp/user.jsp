@@ -23,22 +23,6 @@
 <body>
 <div id="wrapper">
     <jsp:include page="header.jsp" />
-<%--    <div id="header">--%>
-<%--        <ul class="list-items">--%>
-<%--            <li class="item"><a href="">Trang chủ</a></li>--%>
-<%--            <li class="item"><a href="">Playlist</a></li>--%>
-<%--            <li class="item"><a href="">Bảng xếp hạng</a></li>--%>
-<%--            <li class="item"><a href="">Chủ đề</a></li>--%>
-<%--            <li class="item"><a href="">Top 100</a></li>--%>
-<%--        </ul>--%>
-<%--        <form action="#" class="search">--%>
-<%--            <input type="text" class="content-search" placeholder="Tìm kiếm">--%>
-<%--            <button class="icon-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>--%>
-<%--        </form>--%>
-<%--        <div class="login">--%>
-<%--            <button class="btn-login">Đăng nhập</button>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 
     <div id="banner">
         <img src="img/userimage/background.jpg" alt="">
@@ -49,9 +33,7 @@
             </div>
             <span class="profile-name">${user.email}</span>
         </div>
-        <%--        <div class="profile-btn-img">--%>
-        <%--            <button>Chọn ảnh <i class="fa-solid fa-camera"></i></button>--%>
-        <%--        </div>--%>
+
     </div>
     <div id="category">
         <ul class="list-items">
@@ -59,7 +41,7 @@
             <li class="item">Đổi mật khẩu</li>
             <%--            <li class="item">Nghe gần đây</li>--%>
             <li class="item">Đã thích</li>
-            <li class="item">Playlist</li>
+<%--            <li class="item">Playlist</li>--%>
         </ul>
 
         <div class="infor">
@@ -107,172 +89,10 @@
                 </div>
             </form>
         </div>
-        <%--        <div class="recent display-none">--%>
-        <%--            <div class="song">--%>
-        <%--                <div class="song-img">--%>
-        <%--                    <img src="img/userimage/song2.jpg" alt="">--%>
-        <%--                </div>--%>
-
-        <%--                <div class="song-infor">--%>
-        <%--                    <div class="row1">--%>
-        <%--                        <div class="image">--%>
-        <%--                            <img src="img/userimage/play.png" alt="">--%>
-        <%--                        </div>--%>
-        <%--                        <div class="song-detail">--%>
-        <%--                            <div class="song-name">--%>
-        <%--                                Chúng ta của hiện tại--%>
-        <%--                            </div>--%>
-        <%--                            <div class="song-author">--%>
-        <%--                                Sơn tùng M-TP--%>
-        <%--                            </div>--%>
-        <%--                        </div>--%>
-        <%--                    </div>--%>
-        <%--                    <div class="row2">--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/black-heart.png" alt="">--%>
-        <%--                            <span class="count">10K</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/next.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào tiếp theo</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/add.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào playlist</span>--%>
-        <%--                        </div>--%>
-
-        <%--                    </div>--%>
-
-        <%--                </div>--%>
-        <%--                <div class="clear"></div>--%>
-        <%--                <hr>--%>
-        <%--            </div>--%>
-        <%--            <div class="song">--%>
-        <%--                <div class="song-img">--%>
-        <%--                    <img src="img/userimage/song2.jpg" alt="">--%>
-        <%--                </div>--%>
-
-        <%--                <div class="song-infor">--%>
-        <%--                    <div class="row1">--%>
-        <%--                        <div class="image">--%>
-        <%--                            <img src="img/userimage/play.png" alt="">--%>
-        <%--                        </div>--%>
-        <%--                        <div class="song-detail">--%>
-        <%--                            <div class="song-name">--%>
-        <%--                                Chúng ta của hiện tại--%>
-        <%--                            </div>--%>
-        <%--                            <div class="song-author">--%>
-        <%--                                Sơn tùng M-TP--%>
-        <%--                            </div>--%>
-        <%--                        </div>--%>
-        <%--                    </div>--%>
-        <%--                    <div class="row2">--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/black-heart.png" alt="">--%>
-        <%--                            <span class="count">10K</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/next.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào tiếp theo</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/add.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào playlist</span>--%>
-        <%--                        </div>--%>
-
-        <%--                    </div>--%>
-
-        <%--                </div>--%>
-        <%--                <div class="clear"></div>--%>
-        <%--                <hr>--%>
-        <%--            </div>--%>
-        <%--            <div class="song">--%>
-        <%--                <div class="song-img">--%>
-        <%--                    <img src="img/userimage/song2.jpg" alt="">--%>
-        <%--                </div>--%>
-
-        <%--                <div class="song-infor">--%>
-        <%--                    <div class="row1">--%>
-        <%--                        <div class="image">--%>
-        <%--                            <img src="img/userimage/play.png" alt="">--%>
-        <%--                        </div>--%>
-        <%--                        <div class="song-detail">--%>
-        <%--                            <div class="song-name">--%>
-        <%--                                Chúng ta của hiện tại--%>
-        <%--                            </div>--%>
-        <%--                            <div class="song-author">--%>
-        <%--                                Sơn tùng M-TP--%>
-        <%--                            </div>--%>
-        <%--                        </div>--%>
-        <%--                    </div>--%>
-        <%--                    <div class="row2">--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/black-heart.png" alt="">--%>
-        <%--                            <span class="count">10K</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/next.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào tiếp theo</span>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="retangle1">--%>
-        <%--                            <img src="img/userimage/add.png" alt="">--%>
-        <%--                            <span class="count">Thêm vào playlist</span>--%>
-        <%--                        </div>--%>
-
-        <%--                    </div>--%>
-
-        <%--                </div>--%>
-        <%--                <div class="clear"></div>--%>
-        <%--                <hr>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
-
-        <div class="liked display-none">
-            <div class="song">
-                <div class="song-img">
-                    <img src=${song.linkImage} alt="">
-                </div>
-
-                <div class="song-infor">
-                    <div class="row1">
-                        <div class="image">
-                            <img src="img/userimage/play.png" alt="">
-                        </div>
-                        <div class="song-detail">
-                            <div class="song-name">
-                                ${song.name}
-                            </div>
-                            <div class="song-author">
-                                ${song.singer.name}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row2">
-                        <div class="retangle1">
-                            <img src="img/userimage/orange-heart.png" alt="">
-                            <span class="count">10K</span>
-                        </div>
-                        <div class="retangle1">
-                            <img src="img/userimage/next.png" alt="">
-                            <span class="count">Thêm vào tiếp theo</span>
-                        </div>
-                        <div class="retangle1">
-                            <img src="img/userimage/add.png" alt="">
-                            <span class="count">Thêm vào playlist</span>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="clear"></div>
-                <hr>
-            </div>
-
-        </div>
 
         <div class="playlist display-none">
 
-            <c:forEach var="l" items="${user.playLists}">
+            <c:forEach var="l" items="${list}">
                 <div class="song">
                     <div class="song-img">
                         <img src="img/userimage/playlist.jpg" alt="">
@@ -281,32 +101,15 @@
                     <div class="song-infor">
                         <div class="row1">
                             <div class="image">
-                                <img src="img/userimage/play.png" alt="">
+                                <a href="/play/list/${l.id}">
+                                    <img src="img/userimage/play.png" alt="">
+                                </a>
                             </div>
                             <div class="song-detail">
                                 <div class="song-name">
-                                        ${l.name}
-                                </div>
-                                <div class="song-author">
-                                    Admin
+                                        List yêu thích
                                 </div>
                             </div>
-                        </div>
-                        <div class="row2">
-                            <c:forEach var="ss" items="${l.getListSongs()}">
-                                <div class="song-item">
-                                    <div class="image">
-                                        <img src=${ss.linkImage} alt="">
-                                    </div>
-                                    <div class="song-detail">
-                                        <span class="name">${ss.name} </span>
-                                        <span class="author"> ${ss.singer.name}</span>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-
-
                         </div>
 
                     </div>

@@ -29,6 +29,12 @@ public class SongService {
         return songRepositories.findAll();
     }
 
+    public void updateNumListen(int id){
+        Song song = getSongByID(id);
+        song.setNumListen((song.getNumListen()) + 1);
+        saveSong(song);
+    }
+
     public List<Song> findByAuthor(Author author, ArrayList<Song> listByNameAuthor) {
         List<Song> list = findAll();
         System.out.println("listAll = " + list);

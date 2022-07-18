@@ -187,28 +187,36 @@
             <br>
             <div class="row">
                 <div class="col-md-3">
-                    <img style="cursor:pointer; position: relative;" src="./img/NhacHot/Bae.jpg" alt="Big" width="160" height="160">
+                    <a href="/play/${top4New.get(0).id}">
+                        <img style="cursor:pointer; position: relative;" src="./img/NhacHot/Bae.jpg" alt="Big" width="160" height="160">
+                    </a>
                     <div style="margin-top: 10px;">
                         <h5>${top4New.get(0).name}</h5>
                         ${top4New.get(0).singer.name}
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img style="cursor:pointer; position: relative;" src="./img/NhacHot/CuoiEm.jpg" alt="Big" width="160" height="160">
+                    <a href="/play/${top4New.get(1).id}">
+                        <img style="cursor:pointer; position: relative;" src="./img/NhacHot/CuoiEm.jpg" alt="Big" width="160" height="160">
+                    </a>
                     <div style="margin-top: 10px;">
                         <h5>${top4New.get(1).name}</h5>
                         ${top4New.get(1).singer.name}
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img style="cursor:pointer; position: relative;" src="./img/NhacHot/OK Em Buon.jpg" alt="Big" width="160" height="160">
+                    <a href="/play/${top4New.get(2).id}">
+                        <img style="cursor:pointer; position: relative;" src="./img/NhacHot/OK Em Buon.jpg" alt="Big" width="160" height="160">
+                    </a>
                     <div style="margin-top: 10px;">
                         <h5>${top4New.get(2).name}</h5>
                         ${top4New.get(2).singer.name}
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img style="cursor:pointer; position: relative;" src="./img/NhacHot/Cho Anh Xin Loi Duoc Khong.jpg" alt="Big" width="160" height="160">
+                    <a href="/play/${top4New.get(3).id}">
+                        <img style="cursor:pointer; position: relative;" src="./img/NhacHot/Cho Anh Xin Loi Duoc Khong.jpg" alt="Big" width="160" height="160">
+                    </a>
                     <div style="margin-top: 10px;">
                         <h5>${top4New.get(3).name}</h5>
                         ${top4New.get(3).singer.name}
@@ -289,7 +297,9 @@
                     <img style="cursor:pointer;" src="./img/bestSong.jpg" alt="Big" width="80" height="80">
                 </div>
                 <div class="col-md-8" style="padding: 10px;">
-                    <h5>${listTop10.get(0).name}</h5>
+                    <a href="/play/${listTop10.get(0).id}">
+                        <h5>${listTop10.get(0).name}</h5>
+                    </a>
                     ${listTop10.get(0).singer.name}
                 </div>
 
@@ -301,7 +311,9 @@
                     <h1 style="color: aqua;">2</h1>
                 </div>
                 <div class="col-md-8">
-                    <h5>${listTop10.get(1).name}</h5>
+                    <a href="/play/${listTop10.get(1).id}">
+                        <h5>${listTop10.get(1).name}</h5>
+                    </a>
                     ${listTop10.get(1).singer.name}
                 </div>
             </div>
@@ -311,7 +323,9 @@
                     <h1 style="color: rgb(213, 77, 77);">3</h1>
                 </div>
                 <div class="col-md-8">
-                    <h5>${listTop10.get(2).name}</h5>
+                    <a href="/play/${listTop10.get(2).id}">
+                        <h5>${listTop10.get(2).name}</h5>
+                    </a>
                     ${listTop10.get(2).singer.name}
                 </div>
             </div>
@@ -321,7 +335,9 @@
                     <h1>4</h1>
                 </div>
                 <div class="col-md-8">
-                    <h5>${listTop10.get(3).name}</h5>
+                    <a href="/play/${listTop10.get(3).id}">
+                        <h5>${listTop10.get(3).name}</h5>
+                    </a>
                     ${listTop10.get(3).singer.name}
                 </div>
             </div>

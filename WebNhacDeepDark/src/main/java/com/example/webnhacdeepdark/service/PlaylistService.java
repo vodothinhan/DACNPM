@@ -31,7 +31,7 @@ public class PlaylistService {
         playlistRepositories.save(playList) ;
     }
 
-    @Transactional
+
     public PlayList findPlaylistById(int id){
         return playlistRepositories.findById(id);
     }
@@ -45,4 +45,5 @@ public class PlaylistService {
     public  PlayList findPlaylistByUser(Users users){
         return playlistRepositories.findPlayListByUsers(users);
     }
+
 }

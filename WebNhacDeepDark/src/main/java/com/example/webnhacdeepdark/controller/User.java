@@ -33,6 +33,7 @@ public class User {
         ModelAndView mav = new ModelAndView("user");
         Users s = (Users) httpSession.getAttribute("user");
 
+
 //        Song ss =songService.findById(11);
 //        Singer sss =ss.getSinger();
 //        List<PlayList> list =s.getPlayLists();
@@ -44,7 +45,7 @@ public class User {
 
 
 
-//        mav.addObject("list",list);
+        mav.addObject("list",userService.findByEmail(s.getEmail()).getPlayLists());
         mav.addObject("song",new Song());
 //        mav.addObject("singer",sss);
         mav.addObject("user",s);
@@ -53,9 +54,10 @@ public class User {
 
     @RequestMapping(path = "/doiTT", method = RequestMethod.GET)
     public ModelAndView doiTT(@RequestParam("name") String name, @RequestParam("email") String email,
-                              @RequestParam("date")String date, @RequestParam("gender") String gender){
+                              @RequestParam("date")String date, @RequestParam("gender") String gender,HttpSession session){
         ModelAndView mav = new ModelAndView("user");
-        Users s = userService.findById(1);
+        Users u = (Users) session.getAttribute("user") ;
+        Users s = userService.findById(u.getId());
         try{
             Date d = new SimpleDateFormat("yyyy-mm-dd").parse(date);
             s.setDateOfBirth(d);
@@ -81,10 +83,10 @@ public class User {
 
 
     @RequestMapping(path = "/doiMK", method = RequestMethod.POST)
-    public ModelAndView doiMK(@RequestParam("pass1") String pass1, @RequestParam("pass2") String pass2){
+    public ModelAndView doiMK(@RequestParam("pass1") String pass1, @RequestParam("pass2") String pass2 , HttpSession session){
         ModelAndView mav = new ModelAndView("user");
-
-        Users s = userService.findById(1);
+        Users u = (Users) session.getAttribute("user") ;
+        Users s = userService.findById(u.getId());
 
         if(!pass1.equals(pass2)) {
             mav.addObject("error1","Xác nhận mật khẩu không chính xác");

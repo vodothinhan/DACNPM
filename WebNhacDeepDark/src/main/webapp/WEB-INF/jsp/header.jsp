@@ -32,7 +32,7 @@
                     <div id="responsive-nav" style="float: left; margin-left: 0px ;">
                         <!-- NAV -->
                         <ul class="main-nav nav navbar-nav">
-                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="/main">Trang chủ</a></li>
                             <li><a href="#">Playlist</a></li>
                             <li><a href="#">Bảng xếp hạng</a></li>
                             <li><a href="#">Chủ đề</a></li>
@@ -60,10 +60,11 @@
                                     <i class="bi bi-chevron-down"></i>
                                 </a>
                                 <ul>
-                                    <li><a href="#" style="color: rgb(29, 29, 29);">Thông tin tài khoản</a></li>
-                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý user</a></li>
-                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý nhạc</a></li>
-                                    <li><a href="#" style="color: rgb(29, 29, 29);">Tải nhạc lên</a></li>
+                                    <li><a href="/user" style="color: rgb(29, 29, 29);">Thông tin tài khoản</a></li>
+                                    <li><a href="/logout" style="color: rgb(29, 29, 29);">Đăng xuất</a></li>
+<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý user</a></li>--%>
+<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý nhạc</a></li>--%>
+<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Tải nhạc lên</a></li>--%>
                                 </ul>
                             </li>
                         </ul>

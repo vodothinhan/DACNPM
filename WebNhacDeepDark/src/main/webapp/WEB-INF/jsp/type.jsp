@@ -42,7 +42,9 @@
             <img style="cursor:pointer; border-radius: 100%;" src="./img/banner0.jpg" alt="Big" width="50" height="50">
           </div>
           <div class="col-md-6">
-            <h4>${song.name}</h4>
+            <a href="/play/${song.id}">
+              <h4>${song.name}</h4>
+            </a>
             <p>${song.singer.name}</p>
           </div>
           <div class="col-md-1">

@@ -30,28 +30,32 @@
 
 <div class="list" style="width: 100%; height: 550px;">
 
-    <div class="recommend">
-        <h2 style="color: white">CÙNG THỂ LOẠI</h2>
+    <div class="recommend" style="overflow-y: auto">
+        <h2 style="color: white">GỢI Ý</h2>
         <div class="recommend-list">
-            <div class="list-group">
-                <div style="display: flex;">
-                    <a href="#" class="list-group-item" style="width: 70%;">First item</a>
-                    <a href="#" class="list-group-item" style="width: 30%; text-align: right;">First item</a>
-                </div>
+            <c:forEach items="${authorlist}" var="authorSong">
+                <div class="list-group">
+                    <div style="display: flex;">
+                        <a href="/play/${authorSong.id}" class="list-group-item" style="width: 70%;">${authorSong.name}</a>
+                        <a href="#" class="list-group-item" style="width: 30%; text-align: right;">${authorSong.type}</a>
+                    </div>
 
-            </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 
-    <div class="current">
+    <div class="current" style="overflow-y: auto">
         <h2 style="color: white">DANH SÁCH PHÁT</h2>
         <div class="recommend-list">
-            <div class="list-group">
-                <div style="display: flex;">
-                    <a href="#" class="list-group-item" style="width: 70%;">First item</a>
-                    <a href="#" class="list-group-item" style="width: 30%; text-align: right;">First item</a>
+            <c:forEach items="${playlist}" var="song" >
+                <div class="list-group">
+                    <div style="display: flex;">
+                        <a href="javascript:" onclick="playSpecificSong('<c:out value='${song.linkMP3}' />');" class="list-group-item" style="width: 70%;">${song.name}</a>
+                        <a href="#" class="list-group-item" style="width: 30%; text-align: right;">${song.author.name}</a>
+                    </div>
                 </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 
@@ -135,9 +139,20 @@
 </dic>
 
 <script>
+    function a (){
+        alert("ok");
+    }
+
+    class Song {
+        constructor(name, url) {
+            this.name = name;
+            this.url = url;
+        }
+    }
+
     var listSongName = new Array(0);
     <c:forEach var="song" items="${playlist}">
-        listSongName.push(`${song}`);
+        listSongName.push(new Song(`${song.name}`, `${song.linkMP3}`));
     </c:forEach>
 </script>
 <script src="/js/audioVisualizers.js"></script>
@@ -145,6 +160,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/musicPlayPage.js"></script>
+
+<script>
+    function playSpecificSong(linkMP3){
+        console.log(songs[0]);
+        console.log(songs.findIndex(item => item.url === linkMP3));
+        songIndex = songs.findIndex(item => item.url === linkMP3);
+        checkSong();
+        main(url, 'next');
+    }
+</script>
 
 </body>
 

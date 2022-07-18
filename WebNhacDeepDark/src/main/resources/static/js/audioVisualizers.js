@@ -103,7 +103,7 @@ function main(songName, action) {
     if (action === 'play') {
         if (!audioContext) {
             const audio = document.getElementById('audio');
-            audio.src = `/mp3/${songName}.mp3`;
+            audio.src = `${songName}`;
 
             audioContext = new AudioContext();
 
@@ -158,7 +158,7 @@ function main(songName, action) {
 
     if (action === 'next') {
         const audio = document.getElementById('audio');
-        audio.src = `/mp3/${songName}.mp3`;
+        audio.src = `${songName}`;
 
         audioContext = new AudioContext();
 

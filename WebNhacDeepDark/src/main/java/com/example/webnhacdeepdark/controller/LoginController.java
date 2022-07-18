@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.controller;
 
+import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,8 @@ public class LoginController {
             model.addAttribute("login",false);
             return new ModelAndView("login",model);
         }
-        session.setAttribute("user",userService.findByEmail(email)); //<---
+        Users u = userService.findByEmail(email);
+        session.setAttribute("user",userService.findByEmail(email));
 
         return new ModelAndView("redirect:/main", model);
     }

@@ -25,12 +25,12 @@ var url;
 
 
 
-class Song {
-    constructor(name, url) {
-        this.name = name;
-        this.url = url;
-    }
-}
+// class Song {
+//     constructor(name, url) {
+//         this.name = name;
+//         this.url = url;
+//     }
+// }
 
 function createListRandom() {
     for (let i = 0; i < songs.length; i++) {
@@ -41,7 +41,7 @@ function createListRandom() {
 //list song
 const songs = new Array(listSongName.length);
 for (let i = 0; i < songs.length; i++) {
-    songs[i] = new Song(listSongName[i], listSongName[i]);
+    songs[i] = new Song(listSongName[i].name, listSongName[i].url);
     console.log(songs[i]);
 }
 
@@ -154,12 +154,12 @@ prevButton.addEventListener('click', () => {
     }
 });
 
-function playSpecificSong(Specname){
-    let index = songs.indexOf(Specname);
-    songIndex--;
-    checkSong();
-    main(url, 'next');
-}
+// function playSpecificSong(linkMP3){
+//     alert("ok");
+//     // songIndex = songs.findIndex(s => s.url === linkMP3);
+//     // checkSong();
+//     // main(url, 'next');
+// }
 
 //adio event
 audio.addEventListener('timeupdate', updateProgress);

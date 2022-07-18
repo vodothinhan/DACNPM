@@ -2,6 +2,7 @@ package com.example.webnhacdeepdark.utilities;
 
 import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.model.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.Timestamp;
@@ -10,11 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 @Component
 public class ConvertUser {
+    @Autowired
+     private HashMD5 hashMD5 ;
     public Users toEntity(UserModel model){
             Users user = new Users() ;
             user.setEmail(model.getEmail());
             user.setCodeRecovery(null);
-            user.setPassword(model.getPass());
+            hashMD5.setText(model.getPass());
+            user.setPassword(hashMD5.md5ToBase64());
             user.setGender(model.getGender());
             user.setRole("USER");
             user.setStatus("ACTIVE");

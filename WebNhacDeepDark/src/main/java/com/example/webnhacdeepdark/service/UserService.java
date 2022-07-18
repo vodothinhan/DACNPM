@@ -8,6 +8,7 @@ import com.example.webnhacdeepdark.entity.Users;
 import com.example.webnhacdeepdark.model.UserModel;
 import com.example.webnhacdeepdark.repositories.UserRepositories;
 import com.example.webnhacdeepdark.utilities.ConvertUser;
+import com.example.webnhacdeepdark.utilities.HashMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,8 @@ public class UserService {
 
     @Autowired
     PlaylistService playlistService;
-
+    @Autowired
+    HashMD5 hashMD5 ;
     @Autowired
     ContactService contactService;
     public Users findById(int id) {
@@ -52,8 +54,11 @@ public class UserService {
         return true;
     }
 
-    public boolean login(String email, String pass) {
-        if (userRepositories.findFirstByEmailAndPassword(email, pass) == null) return false;
+    public boolean login(String email, String text) {
+        hashMD5.setText(text);
+        String pass = hashMD5.md5ToBase64();
+        if (userRepositories.findFirstByEmailAndPasswordAndStatus(email, pass,"ACTIVE") == null) return false;
+
         return true;
     }
 
@@ -101,7 +106,9 @@ public class UserService {
     }
 
     @Transactional
-    public void updatePass(String pass) {
+    public void updatePass(String text) {
+        hashMD5.setText(text);
+        String pass = hashMD5.md5ToBase64();
         this.user.setPassword(pass);
         userRepositories.save(user);
     }

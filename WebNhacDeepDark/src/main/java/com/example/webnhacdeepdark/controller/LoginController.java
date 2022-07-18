@@ -40,4 +40,9 @@ public class LoginController {
 
         return new ModelAndView("redirect:/main", model);
     }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
+    }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Dell
@@ -19,7 +20,7 @@
 
 </head>
 <body>
-<header>
+<header style="position: relative">
     <!-- VERTICAL MENU -->
     <div>
         <!-- MENU -->
@@ -52,22 +53,27 @@
                         </div>
                         <!-- /SEARCH -->
                         <!-- ACCOUNT -->
-                        <ul class="main-nav nav navbar-nav" style="margin-left: 30px;">
-                            <li class="dropdown">
-                                <a href="#">
-                                    <img style="cursor:pointer; border-radius: 100%;" src="/img/banner0.jpg" alt="Big" width="40" height="40">
-                                    <span><strong> Tài khoản </strong>↴ </span>
-                                    <i class="bi bi-chevron-down"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="/user" style="color: rgb(29, 29, 29);">Thông tin tài khoản</a></li>
-                                    <li><a href="/logout" style="color: rgb(29, 29, 29);">Đăng xuất</a></li>
-<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý user</a></li>--%>
-<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý nhạc</a></li>--%>
-<%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Tải nhạc lên</a></li>--%>
-                                </ul>
-                            </li>
-                        </ul>
+                       <c:if test="${sessionScope.user!=null}">
+                           <ul class="main-nav nav navbar-nav" style="margin-left: 30px;">
+                               <li class="dropdown">
+                                   <a href="#">
+                                       <img style="cursor:pointer; border-radius: 100%;" src="/img/banner0.jpg" alt="Big" width="40" height="40">
+                                       <span><strong> Tài khoản </strong>↴ </span>
+                                       <i class="bi bi-chevron-down"></i>
+                                   </a>
+                                   <ul>
+                                       <li><a href="/user" style="color: rgb(29, 29, 29);">Thông tin tài khoản</a></li>
+                                       <li><a href="/logout" style="color: rgb(29, 29, 29);">Đăng xuất</a></li>
+                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý user</a></li>--%>
+                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý nhạc</a></li>--%>
+                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Tải nhạc lên</a></li>--%>
+                                   </ul>
+                               </li>
+                           </ul>
+                       </c:if>
+                        <c:if test="${sessionScope.user==null}">
+                            <a style="position: absolute; right: 50px;top: 50%; transform: translateY(-50%)" href="/login" class="btn btn-danger" role="button">Đăng nhập</a>
+                        </c:if>
                         <!-- /ACCOUNT -->
                     </div>
                     <!-- /responsive-nav -->

@@ -60,6 +60,7 @@
 <div class="container-admin">
     <div class="navigation-admin">
         <ul>
+
             <li>
                 <a href="#">
                     <span class="icon"><i class="fa-solid fa-music"></i></i></i> </span>
@@ -75,34 +76,46 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/manage-user">
                     <span class="icon"><i class="fa fa-address-book" aria-hidden="true"></i> </span>
-                    <span class="title">Customer</span>
+                    <span class="title">Quản lí tài khoản</span>
                 </a>
 
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/manage-song">
                     <span class="icon"> <i class="fa-solid fa-message" aria-hidden="true"></i></span>
-                    <span class="title">Message</span>
+                    <span class="title">Quản lí bài hát</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/manage-album">
                     <span class="icon"><i class="fa-solid fa-circle-question"></i> </span>
-                    <span class="title">Help</span>
+                    <span class="title">Quản lí album</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/manage-singer">
                     <span class="icon"> <i class="fa-solid fa-key"></i> </span>
-                    <span class="title">PassWord</span>
+                    <span class="title">Quản lí ca sĩ</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/manage-author">
+                    <span class="icon"> <i class="fa-solid fa-atom"></i> </span>
+                    <span class="title">Quản lí tác giả </span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/manage-contact">
+                    <span class="icon">   <i class="fa-solid fa-box"></i> </span>
+                    <span class="title">Quản lí liên hệ </span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
                     <span class="icon"> <i class="fa-solid fa-right-from-bracket"></i></span>
-                    <span class="title">Sign Out</span>
+                    <span class="title">Đăng xuất</span>
                 </a>
             </li>
         </ul>
@@ -119,7 +132,7 @@
 
             </div>
             <div class="user">
-                <img src="image/pexels-kateryna-babaieva-2853422.jpg" alt="">
+                <img src="/img/avatar.jpg" alt="">
             </div>
 
         </div>

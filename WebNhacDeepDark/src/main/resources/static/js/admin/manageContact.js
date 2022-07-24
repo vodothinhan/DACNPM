@@ -1,5 +1,19 @@
 $(document).ready(function () {
-  var table =  $('#table-contact').DataTable({  responsive: {
+  var table =  $('#table-contact').DataTable(
+      { "language": {
+              "lengthMenu": "Hiển thị _MENU_ dòng trong trang",
+              "zeroRecords": "Không có kết quả tìm thấy!",
+              "info": "Trang _PAGE_ trong tổng số _PAGES_ trang",
+              "infoEmpty": "Không có trang",
+              "infoFiltered": "(Lọc từ tổng số _MAX_ kết quả)",
+              "search":         "Tìm kiếm:",
+              "paginate": {
+                  "first":      "Đầu",
+                  "last":       "Cuối",
+                  "next":       "Tiếp theo",
+                  "previous":   "Trở về"
+              }
+          }, responsive: {
             details: false
         },
         columnDefs: [

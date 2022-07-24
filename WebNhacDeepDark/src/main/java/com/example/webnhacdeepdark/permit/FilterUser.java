@@ -16,16 +16,15 @@ public class FilterUser implements Filter {
         HttpServletResponse res = (HttpServletResponse) servletResponse ;
         HttpSession session = req.getSession() ;
         Users  users = (Users) session.getAttribute("user");
-        filterChain.doFilter(req, res);
-//        if(users==null) {
-//           res.sendRedirect(req.getContextPath()+"/login");
-//        }
-//        else {
-//            if(users.getRole().equals("ADMIN")) {
-//                filterChain.doFilter(req, res);
-//            }
-//            else res.sendRedirect(req.getContextPath()+"/main");
-//        }
+        if(users==null) {
+           res.sendRedirect(req.getContextPath()+"/login");
+        }
+        else {
+            if(users.getRole().equals("ADMIN")) {
+                filterChain.doFilter(req, res);
+            }
+            else res.sendRedirect(req.getContextPath()+"/main");
+        }
 
     }
 }

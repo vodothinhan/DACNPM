@@ -36,8 +36,9 @@ public class LoginController {
             return new ModelAndView("login",model);
         }
         Users u = userService.findByEmail(email);
+        System.out.println(u.getRole());
         session.setAttribute("user",userService.findByEmail(email));
-
+        if(u.getRole().equals("ADMIN")) return new ModelAndView("redirect:/admin/manage-user", model);
         return new ModelAndView("redirect:/main", model);
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

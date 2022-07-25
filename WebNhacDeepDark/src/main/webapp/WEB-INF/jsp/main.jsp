@@ -235,7 +235,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="/type?type=usuk&action=songType"><img style="cursor:pointer; position: relative;" src="./img/TheLoai/Usuk.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=US-UK&action=songType"><img style="cursor:pointer; position: relative;" src="./img/TheLoai/Usuk.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >USUK</h5>
                     </div>

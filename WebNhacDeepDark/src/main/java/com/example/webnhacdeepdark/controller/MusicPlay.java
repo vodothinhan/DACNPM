@@ -3,6 +3,7 @@ package com.example.webnhacdeepdark.controller;
 import com.example.webnhacdeepdark.entity.PlayList;
 import com.example.webnhacdeepdark.entity.Song;
 import com.example.webnhacdeepdark.repositories.SongRepositories;
+import com.example.webnhacdeepdark.service.AlbumService;
 import com.example.webnhacdeepdark.service.PlaylistService;
 import com.example.webnhacdeepdark.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class MusicPlay {
     SongService songService;
     @Autowired
     PlaylistService playlistService;
+    @Autowired
+    AlbumService albumService;
 
 
     @RequestMapping(path = "/play/{id}")
@@ -32,7 +35,7 @@ public class MusicPlay {
         listCurrent.add(song);
         mav.addObject("playlist", listCurrent);
         songService.updateNumListen(id);
-        listSameAuthor = song.getAuthor().getSongList();
+        listSameAuthor = songService.find5ByType(listCurrent.get(0).getType());
         mav.addObject("authorlist", listSameAuthor);
         return mav;
     }
@@ -45,7 +48,22 @@ public class MusicPlay {
         System.out.println(listCurrent.size());
         List<Song> listSameAuthor = new ArrayList<>();
         mav.addObject("playlist", listCurrent);
-        listSameAuthor = listCurrent.get(0).getAuthor().getSongList();
+//        listSameAuthor = listCurrent.get(0).getAlbum().getSongList();
+        listSameAuthor = songService.find5ByType(listCurrent.get(0).getType());
+        mav.addObject("authorlist", listSameAuthor);
+        return mav;
+    }
+
+    @RequestMapping(path = "/play/album/{id}")
+    public ModelAndView toAlbumPlayList(@PathVariable int id ){
+        System.out.println(albumService.getAlbumByID(id).getSongList());
+        ModelAndView mav = new ModelAndView("music_play");
+        List<Song> listCurrent = albumService.getAlbumByID(id).getSongList();
+        System.out.println(listCurrent.size());
+        List<Song> listSameAuthor = new ArrayList<>();
+        mav.addObject("playlist", listCurrent);
+//        listSameAuthor = listCurrent.get(0).getAlbum().getSongList();
+        listSameAuthor = songService.find5ByType(listCurrent.get(0).getType());
         mav.addObject("authorlist", listSameAuthor);
         return mav;
     }

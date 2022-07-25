@@ -86,3 +86,8 @@ function blockOrNone(){
     btn.classList.toggle('active')
     spinner.classList.toggle('active')
 }
+if(document.querySelector(".alert-danger")){
+    setTimeout(() =>{
+        document.querySelector(".alert-danger").classList.add("d-none")
+    } ,2000)
+}

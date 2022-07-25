@@ -20,7 +20,7 @@ public class ConvertUser {
             hashMD5.setText(model.getPass());
             user.setPassword(hashMD5.md5ToBase64());
             user.setGender(model.getGender());
-            user.setRole("ADMIN");
+            user.setRole("USER");
             user.setStatus("ACTIVE");
             user.setTimeRecovery(System.currentTimeMillis());
             user.setDateOfBirth(formatDate(model));

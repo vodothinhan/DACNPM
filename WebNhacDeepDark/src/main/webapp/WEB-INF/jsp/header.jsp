@@ -34,7 +34,7 @@
                         <!-- NAV -->
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="/main">Trang chủ</a></li>
-                            <li><a href="#">Playlist</a></li>
+                            <li><a href="/playlist">Playlist</a></li>
                             <li><a href="#">Bảng xếp hạng</a></li>
                             <li><a href="#">Chủ đề</a></li>
                             <li><a href="/contact">Liên hệ</a></li>

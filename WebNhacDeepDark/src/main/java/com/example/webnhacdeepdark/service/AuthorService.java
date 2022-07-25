@@ -1,5 +1,6 @@
 package com.example.webnhacdeepdark.service;
 
+import com.example.webnhacdeepdark.entity.Album;
 import com.example.webnhacdeepdark.entity.Author;
 import com.example.webnhacdeepdark.entity.Singer;
 import com.example.webnhacdeepdark.entity.Song;
@@ -47,6 +48,9 @@ public class AuthorService {
             for (Integer id : listIdAuthor){
                 for (Song song : getAuthorByID(id).getSongList()){
                     song.setAuthor(null);
+                }
+                for (Album album : getAuthorByID(id).getAlbumList()){
+                    album.setAuthor(null);
                 }
                 deleteAuthor(id);
             }

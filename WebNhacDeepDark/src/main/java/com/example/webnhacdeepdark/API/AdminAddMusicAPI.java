@@ -70,10 +70,10 @@ public class AdminAddMusicAPI {
     @RequestMapping(value = "/addMusic", method = RequestMethod.POST)
     public ResponseEntity<ObjectResponse> addMusic(FormAddMusic formAddMusic){
            if(addMusic.addMusic(formAddMusic)) return ResponseEntity.status(HttpStatus.OK).body(
-                   new ObjectResponse("oke nha thg lz" , "oke roi do ku em")
+                   new ObjectResponse("oke" , "")
            ) ;
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ObjectResponse("failure nha thg lz" , formAddMusic.toString())
+                new ObjectResponse("failure" , formAddMusic.toString())
         );
 
     }

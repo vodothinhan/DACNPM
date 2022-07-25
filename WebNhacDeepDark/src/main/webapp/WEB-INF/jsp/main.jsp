@@ -235,7 +235,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="/type?type=usuk&action=songType"><img style="cursor:pointer; position: relative;" src="./img/TheLoai/Usuk.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=US-UK&action=songType"><img style="cursor:pointer; position: relative;" src="./img/TheLoai/Usuk.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >USUK</h5>
                     </div>
@@ -259,25 +259,25 @@
             <br>
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/type?type=2&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/Henry.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=47&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/Henry.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >Henry</h5>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="/type?type=1&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/HoaiLam.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=48&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/HoaiLam.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >Hoài Lâm</h5>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="/type?type=3&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/PhanDuyAnh.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=49&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/PhanDuyAnh.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >Phan Duy Anh</h5>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="/type?type=1&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/VuongAnhTu.jpg" alt="Big" width="160" height="160"></a>
+                    <a href="/type?type=52&action=singerName"><img style="cursor:pointer; position: relative;" src="./img/NhacSi/VuongAnhTu.jpg" alt="Big" width="160" height="160"></a>
                     <div style="margin-top: 10px;">
                         <h5 >Vương Anh Tú</h5>
                     </div>

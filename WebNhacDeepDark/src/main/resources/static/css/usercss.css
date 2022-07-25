@@ -203,7 +203,7 @@
 
 #category .infor-detail label{
     font-size: 28px !important;
-    color: red !important;
+    color: #333333 !important;
     opacity: 0.8;
     min-width: 140px;
     display: inline-block;
@@ -240,11 +240,14 @@
     width: 80%;
     margin: 30px auto;
     border: 1px solid #ccc;
+    background-color: #FFFFFF !important;
+
 }
 #category .change{
     width: 60%;
     padding: 60px 0;
     margin: auto;
+    background-color: #FFFFFF !important;
 
 }
 #category .change .infor-row{

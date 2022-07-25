@@ -34,7 +34,7 @@
                         <!-- NAV -->
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="/main">Trang chủ</a></li>
-                            <li><a href="#">Playlist</a></li>
+                            <li><a href="/playlist">Playlist</a></li>
                             <li><a href="#">Bảng xếp hạng</a></li>
                             <li><a href="#">Chủ đề</a></li>
                             <li><a href="/contact">Liên hệ</a></li>
@@ -56,17 +56,14 @@
                        <c:if test="${sessionScope.user!=null}">
                            <ul class="main-nav nav navbar-nav" style="margin-left: 30px;">
                                <li class="dropdown">
-                                   <a href="#">
+                                   <a href="#" class="" style="width: 100px; text-overflow: ellipsis; white-space: nowrap;">
                                        <img style="cursor:pointer; border-radius: 100%;" src="/img/banner0.jpg" alt="Big" width="40" height="40">
-                                       <span><strong> Tài khoản </strong>↴ </span>
+                                       <span>${sessionScope.user.email}↴ </span>
                                        <i class="bi bi-chevron-down"></i>
                                    </a>
                                    <ul>
                                        <li><a href="/user" style="color: rgb(29, 29, 29);">Thông tin tài khoản</a></li>
                                        <li><a href="/logout" style="color: rgb(29, 29, 29);">Đăng xuất</a></li>
-                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý user</a></li>--%>
-                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Quản lý nhạc</a></li>--%>
-                                           <%--                                    <li><a href="#" style="color: rgb(29, 29, 29);">Tải nhạc lên</a></li>--%>
                                    </ul>
                                </li>
                            </ul>

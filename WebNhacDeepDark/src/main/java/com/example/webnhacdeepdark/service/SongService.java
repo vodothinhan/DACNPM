@@ -219,5 +219,7 @@ public class SongService {
         song.setType(songfromForm.getType());
     }
 
-
+    public List<Song> find5ByType(String type){
+        return songRepositories.findTop5ByTypeOrderByDateAdd(type);
+    }
 }

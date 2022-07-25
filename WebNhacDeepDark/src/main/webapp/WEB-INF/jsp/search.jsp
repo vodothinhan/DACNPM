@@ -197,7 +197,7 @@
                             <img src="/img/Chilles.jpg" class="img col-2">
                             <div class="col-9">
                                 <div class="col-12">
-                                    <a href="/play/${list.id}">
+                                    <a href="/play/album/${list.id}">
                                         <img src="/img/Play.jpg" class="circle">
                                     </a>
                                     <div class="title-Song col-10">

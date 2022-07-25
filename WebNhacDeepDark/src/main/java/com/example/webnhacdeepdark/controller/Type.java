@@ -29,6 +29,7 @@ public class Type {
     @RequestMapping(path = "/type",method = RequestMethod.GET)
     public ModelAndView type(@RequestParam String type, @RequestParam String action, ModelMap model){
         if(action.equalsIgnoreCase("songType")){
+            System.out.println(type);
             List<Song> songs = songService.findSongByType(type);
             model.addAttribute("typeName",type);
             model.addAttribute("songsWithName",songs);
